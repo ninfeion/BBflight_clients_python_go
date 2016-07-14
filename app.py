@@ -5,3 +5,5 @@ main function implement
 author = Ninfeion
 """
 
+import serial
+import pygame.joystick
