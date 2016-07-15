@@ -368,6 +368,7 @@ class Ui_BBUI(object):
         self.port_comboBox = QtWidgets.QComboBox(self.prot_setting_groupBox)
         self.port_comboBox.setObjectName("port_comboBox")
         self.gridLayout_page_3_3_1.addWidget(self.port_comboBox, 0, 1, 1, 1)
+        self.port_comboBox.activated.connect(self.serial_port_shut_down_action)
         self.port_comboBox.activated[str].connect(self.serial_port_select)
 
         #byte_size_comboBox
@@ -458,15 +459,14 @@ class Ui_BBUI(object):
         self.radioButton_recieve_ascii = QtWidgets.QRadioButton(self.recieve_setting_groupBox)
         self.radioButton_recieve_ascii.setObjectName("radioButton_recieve_ascii")
         self.horizontalLayout_page_3_3_2.addWidget(self.radioButton_recieve_ascii)
-        self.radioButton_recieve_ascii.setChecked(True)
         self.radioButton_recieve_ascii.toggled[bool].connect(self.serial_recieve_ascii_setting)
+        self.radioButton_recieve_ascii.setChecked(True)
 
         #radioButton_recieve_hex
         self.radioButton_recieve_hex = QtWidgets.QRadioButton(self.recieve_setting_groupBox)
         self.radioButton_recieve_hex.setObjectName("radioButton_recieve_hex")
         self.horizontalLayout_page_3_3_2.addWidget(self.radioButton_recieve_hex)
         self.radioButton_recieve_hex.toggled[bool].connect(self.serial_recieve_hex_setting)
-
         self.gridLayout_14.addLayout(self.horizontalLayout_page_3_3_2, 0, 0, 1, 1)
         self.verticalLayout_page_3_3_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_page_3_3_3.setObjectName("verticalLayout_page_3_3_3")
@@ -519,8 +519,8 @@ class Ui_BBUI(object):
         self.radioButton_send_ascii = QtWidgets.QRadioButton(self.send_setting_groupBox)
         self.radioButton_send_ascii.setObjectName("radioButton_send_ascii")
         self.gridLayout_15.addWidget(self.radioButton_send_ascii, 0, 0, 1, 1)
+        self.radioButton_send_ascii.setChecked(True)  # will connect toggled
         self.radioButton_send_ascii.toggled[bool].connect(self.serial_send_ascii_setting)
-        self.radioButton_send_ascii.setChecked(True)# will connect toggled
 
         #radioButton_send_hex
         self.radioButton_send_hex = QtWidgets.QRadioButton(self.send_setting_groupBox)
@@ -672,22 +672,22 @@ class Ui_BBUI(object):
     def serial_recieve_ascii_setting(self, toggledbool):
         if toggledbool == True:
             global_variable.BBSerialRecieve.setRecieveMode('ASCII')
-        self.text_send_textEdit.setText(r'<b>Type the words directly!</b>')
-        self.text_send_textEdit.selectAll()
 
     def serial_recieve_hex_setting(self, toggledbool):
         if toggledbool == True:
             global_variable.BBSerialRecieve.setRecieveMode('Hex')
-        self.text_send_textEdit.setText(r'<b>Type the words with escape codes like: \x61\x62\x63</b>')
-        self.text_send_textEdit.selectAll()
 
     def serial_send_ascii_setting(self, toggledbool):
         if toggledbool == True:
             global_variable.BBSerialSend.setSendMode('ASCII')
+        self.text_send_textEdit.setText(r'<b>Type the words directly!</b>')
+        self.text_send_textEdit.selectAll()
 
     def serial_send_hex_setting(self, toggledbool):
         if toggledbool == True:
             global_variable.BBSerialSend.setSendMode('Hex')
+        self.text_send_textEdit.setText(r'<b>Type the words with decimal ascii code like: 656667 -> ABC</b>')
+        self.text_send_textEdit.selectAll()
 
     def serial_auto_line_feed_setting(self, toggledbool):
         global_variable.BBSerialRecieve.setAutoNewLine(toggledbool)
@@ -707,18 +707,30 @@ class Ui_BBUI(object):
 
     def serial_text_send_action(self):
         tarstring = self.text_send_textEdit.toPlainText()
-        bbapi.serialSendData(global_variable.BBSerial, global_variable.BBSerialSend, tarstring)
+        if bbapi.serialSendData(global_variable.BBSerial, global_variable.BBSerialSend, tarstring) == True:
+            self.statusbar.showMessage('%s OPENED, %d >>   Rx: %d Bytes Tx: %d Bytes ' %
+                                       (global_variable.BBSerial.name, global_variable.BBSerial.baudrate,
+                                        global_variable.BBSerialRecieve.rxByteCount, global_variable.BBSerialSend.txByteCount))
+        else:
+            self.statusbar.showMessage('Send Fail!!!')
 
     def serial_port_open_action(self):
-        if bbapi.serialPortOpen(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve) == True:
-            self.statusbar.showMessage('PORT Open Success!')
-        else:
-            self.statusbar.showMessage('PORT Open Fail!')
+        partem = bbapi.serialPortOpen(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve)
+        if partem == True:
+            self.statusbar.showMessage('%s Open Success!' % global_variable.BBSerial.name)
+        elif partem == False:
+            self.statusbar.showMessage('%s Open Fail!' % global_variable.BBSerial.name)
+        elif partem == 'DataRecieveContinue':
+            self.statusbar.showMessage('%s Recieving Open!' % global_variable.BBSerial.name)
+
     def serial_recieve_stop_action(self):
         global_variable.BBSerialRecieve.setRecieveSwitch(False)
+        self.statusbar.showMessage('%s Recieving Stop!' % global_variable.BBSerial.name)
 
     def serial_port_shut_down_action(self):
         bbapi.serialPortShutDown(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve)
+        if global_variable.BBSerial.name != None:
+            self.statusbar.showMessage('%s CLOSED!!!' % global_variable.BBSerial.name)
 
     def serial_clean_browser_action(self):
         pass

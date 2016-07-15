@@ -9,14 +9,17 @@ import serial
 import serial.tools.list_ports
 import pygame.joystick
 
+
+
 class serial_recieve(object):
     def __init__(self):
-        self._buffer = None
+        self._buffer = ''
         self._recieveMode = 'ASCII'
         self._autoNewLine = True
         self._showSend = False
         self._showTheTime = False
         self._recieveSwitch = False
+        self.rxByteCount = 0
 
     def setRecieveSwitch(self, par):
         if type(par) == bool :
@@ -74,11 +77,12 @@ class serial_recieve(object):
 
 class serial_send(object):
     def __init__(self):
-        self._buffer = None
+        self._buffer = ''
         self._sendMode = 'ASCII'
         self._repeatSend = False
         self._repeatSendPar = 1000
         self._portSwitch = False
+        self.txByteCount = 0
 
     def setSendSwitch(self, par):
         if type(par) == bool:
@@ -173,6 +177,9 @@ def serialRepeatSend(boolpar):
     pass
 
 def serialPortOpen(serialclass, serialsendsetclass, serialrecievesetclass):
+    if serialclass.isOpen() == True and serialsendsetclass.getSendSwitch() == True and serialrecievesetclass.getRecieveSwitch() == False :
+        serialrecievesetclass.setRecieveSwitch(True)
+        return 'DataRecieveContinue'
     if serialclass.isOpen() == False:
         try:
             serialclass.open()
@@ -197,13 +204,28 @@ def serialSendData(serialclass, serialsendsetclass, tarstring):
     if serialclass.isOpen() == True:
         if serialsendsetclass.getSendSwitch() == True:
             if serialsendsetclass.getSendMode() == 'ASCII':
-                serialclass.write(tarstring.encode('ascii'))
-                #print('point')
+                serialsendsetclass.txByteCount += serialclass.write(tarstring.encode('ascii'))
+                return True
             elif serialsendsetclass.getSendMode() == 'Hex':
                 import re
-                stringre = re.match(r'([\\\\][x][0-9a-zA-Z][0-9a-zA-Z])+', tarstring)
+                stringre = re.match(r'([0-9])+', tarstring)
                 if stringre  != None :
-                    serialclass.write(stringre.group(0).encode('ascii'))
+                    waittoencode = input_hex2ascii(stringre.group(0))
+                    serialsendsetclass.txByteCount += serialclass.write(waittoencode.encode('ascii'))
+                    return True
+                else:
+                    return False
+        else:
+            return False
+    else:
+        return False
+
+def input_hex2ascii(string):
+    temstrint = ''
+    while len(string)>1:
+        temstrint += chr(int(string[:2]))
+        string = string[2:]
+    return temstrint
 
 
 

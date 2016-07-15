@@ -758,6 +758,12 @@
                  <property name="text">
                   <string>ASCII</string>
                  </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                 <property name="autoRepeat">
+                  <bool>false</bool>
+                 </property>
                 </widget>
                </item>
                <item>
