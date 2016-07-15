@@ -4,7 +4,10 @@
 global variable bank
 author: Ninfeion
 """
-import serial
+
+import serial,bbapi
 
 BBSerial = serial.Serial()
+BBSerialRecieve = bbapi.serial_recieve()
+BBSerialSend = bbapi.serial_send()
 

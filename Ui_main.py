@@ -95,6 +95,7 @@ class Ui_BBUI(object):
         self.basic_control_groupbox.setObjectName("basic_control_groupbox")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.basic_control_groupbox)
         self.gridLayout_5.setObjectName("gridLayout_5")
+
         self.roll_trim_doubleSpinBox = QtWidgets.QDoubleSpinBox(self.basic_control_groupbox)
         self.roll_trim_doubleSpinBox.setObjectName("roll_trim_doubleSpinBox")
         self.gridLayout_5.addWidget(self.roll_trim_doubleSpinBox, 4, 1, 1, 1)
@@ -452,24 +453,44 @@ class Ui_BBUI(object):
         self.gridLayout_14.setObjectName("gridLayout_14")
         self.horizontalLayout_page_3_3_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_page_3_3_2.setObjectName("horizontalLayout_page_3_3_2")
+
+        #radioButton_recieve_ascii
         self.radioButton_recieve_ascii = QtWidgets.QRadioButton(self.recieve_setting_groupBox)
         self.radioButton_recieve_ascii.setObjectName("radioButton_recieve_ascii")
         self.horizontalLayout_page_3_3_2.addWidget(self.radioButton_recieve_ascii)
+        self.radioButton_recieve_ascii.setChecked(True)
+        self.radioButton_recieve_ascii.toggled[bool].connect(self.serial_recieve_ascii_setting)
+
+        #radioButton_recieve_hex
         self.radioButton_recieve_hex = QtWidgets.QRadioButton(self.recieve_setting_groupBox)
         self.radioButton_recieve_hex.setObjectName("radioButton_recieve_hex")
         self.horizontalLayout_page_3_3_2.addWidget(self.radioButton_recieve_hex)
+        self.radioButton_recieve_hex.toggled[bool].connect(self.serial_recieve_hex_setting)
+
         self.gridLayout_14.addLayout(self.horizontalLayout_page_3_3_2, 0, 0, 1, 1)
         self.verticalLayout_page_3_3_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_page_3_3_3.setObjectName("verticalLayout_page_3_3_3")
+
+        #checkbox_auto_line_feed
         self.checkBox_auto_line_feed = QtWidgets.QCheckBox(self.recieve_setting_groupBox)
         self.checkBox_auto_line_feed.setObjectName("checkBox_auto_line_feed")
         self.verticalLayout_page_3_3_3.addWidget(self.checkBox_auto_line_feed)
+        self.checkBox_auto_line_feed.toggled[bool].connect(self.serial_auto_line_feed_setting)
+        self.checkBox_auto_line_feed.setChecked(True)
+
+
+        #checkbox_show_recieve_data
         self.checkBox_show_recieve_data = QtWidgets.QCheckBox(self.recieve_setting_groupBox)
         self.checkBox_show_recieve_data.setObjectName("checkBox_show_recieve_data")
         self.verticalLayout_page_3_3_3.addWidget(self.checkBox_show_recieve_data)
+        self.checkBox_show_recieve_data.toggled[bool].connect(self.serial_show_recieve_data_setting)
+
+        #checkbox_show_the_time
         self.checkBox_show_the_time = QtWidgets.QCheckBox(self.recieve_setting_groupBox)
         self.checkBox_show_the_time.setObjectName("checkBox_show_the_time")
         self.verticalLayout_page_3_3_3.addWidget(self.checkBox_show_the_time)
+        self.checkBox_show_the_time.toggled[bool].connect(self.serial_show_the_time_setting)
+
         spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_page_3_3_3.addItem(spacerItem5)
         self.gridLayout_14.addLayout(self.verticalLayout_page_3_3_3, 1, 0, 1, 1)
@@ -478,18 +499,35 @@ class Ui_BBUI(object):
         self.send_setting_groupBox.setObjectName("send_setting_groupBox")
         self.gridLayout_15 = QtWidgets.QGridLayout(self.send_setting_groupBox)
         self.gridLayout_15.setObjectName("gridLayout_15")
+
+        #spinBox_repeat_par
         self.spinBox_repeat_par = QtWidgets.QSpinBox(self.send_setting_groupBox)
         self.spinBox_repeat_par.setObjectName("spinBox_repeat_par")
         self.gridLayout_15.addWidget(self.spinBox_repeat_par, 1, 1, 1, 1)
+        self.spinBox_repeat_par.setSingleStep(100)
+        self.spinBox_repeat_par.setMaximum(1000000) # maximum of 1000 second
+        self.spinBox_repeat_par.valueChanged[int].connect(self.serial_repeat_send_parameter_setting)
+        self.spinBox_repeat_par.setValue(1000)
+
+        #checkBox_repeat_send
         self.checkBox_repeat_send = QtWidgets.QCheckBox(self.send_setting_groupBox)
         self.checkBox_repeat_send.setObjectName("checkBox_repeat_send")
         self.gridLayout_15.addWidget(self.checkBox_repeat_send, 1, 0, 1, 1)
+        self.checkBox_repeat_send.toggled[bool].connect(self.serial_repeat_send_setting)
+
+        #radioButton_send_ascii
         self.radioButton_send_ascii = QtWidgets.QRadioButton(self.send_setting_groupBox)
         self.radioButton_send_ascii.setObjectName("radioButton_send_ascii")
         self.gridLayout_15.addWidget(self.radioButton_send_ascii, 0, 0, 1, 1)
+        self.radioButton_send_ascii.toggled[bool].connect(self.serial_send_ascii_setting)
+        self.radioButton_send_ascii.setChecked(True)# will connect toggled
+
+        #radioButton_send_hex
         self.radioButton_send_hex = QtWidgets.QRadioButton(self.send_setting_groupBox)
         self.radioButton_send_hex.setObjectName("radioButton_send_hex")
         self.gridLayout_15.addWidget(self.radioButton_send_hex, 0, 1, 1, 1)
+        self.radioButton_send_hex.toggled[bool].connect(self.serial_send_hex_setting)
+
         self.label_unit_ms = QtWidgets.QLabel(self.send_setting_groupBox)
         self.label_unit_ms.setObjectName("label_unit_ms")
         self.gridLayout_15.addWidget(self.label_unit_ms, 1, 2, 1, 1)
@@ -514,32 +552,54 @@ class Ui_BBUI(object):
         self.horizontalLayout_page_3_2_1 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_page_3_2_1.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout_page_3_2_1.setObjectName("horizontalLayout_page_3_2_1")
+
+        #text_send_textEdit
         self.text_send_textEdit = QtWidgets.QTextEdit(self.page_serial_port_debug)
         self.text_send_textEdit.setObjectName("text_send_textEdit")
         self.horizontalLayout_page_3_2_1.addWidget(self.text_send_textEdit)
+
+        #text_send_pushButton
         self.text_send_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.text_send_pushButton.setObjectName("text_send_pushButton")
         self.horizontalLayout_page_3_2_1.addWidget(self.text_send_pushButton)
+        self.text_send_pushButton.clicked.connect(self.serial_text_send_action)
+
         self.verticalLayout_page_3_2.addLayout(self.horizontalLayout_page_3_2_1)
         self.horizontalLayout_page_3_2_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_page_3_2_2.setObjectName("horizontalLayout_page_3_2_2")
         spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_page_3_2_2.addItem(spacerItem6)
+
+        #start_pushButton
         self.start_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.start_pushButton.setObjectName("start_pushButton")
         self.horizontalLayout_page_3_2_2.addWidget(self.start_pushButton)
+        self.start_pushButton.clicked.connect(self.serial_port_open_action)
+
+        #pause_pushButton
         self.pause_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.pause_pushButton.setObjectName("pause_pushButton")
         self.horizontalLayout_page_3_2_2.addWidget(self.pause_pushButton)
+        self.pause_pushButton.clicked.connect(self.serial_recieve_stop_action)
+
+        #stop_pushButton
         self.stop_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.stop_pushButton.setObjectName("stop_pushButton")
         self.horizontalLayout_page_3_2_2.addWidget(self.stop_pushButton)
+        self.stop_pushButton.clicked.connect(self.serial_port_shut_down_action)
+
+        #clean_pushButton
         self.clean_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.clean_pushButton.setObjectName("clean_pushButton")
         self.horizontalLayout_page_3_2_2.addWidget(self.clean_pushButton)
+        self.clean_pushButton.clicked.connect(self.serial_clean_browser_action)
+
+        #save_log_pushButton
         self.save_log_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.save_log_pushButton.setObjectName("save_log_pushButton")
         self.horizontalLayout_page_3_2_2.addWidget(self.save_log_pushButton)
+        self.clean_pushButton.clicked.connect(self.serial_save_log_action)
+
         self.verticalLayout_page_3_2.addLayout(self.horizontalLayout_page_3_2_2)
         self.gridLayout_page_3_1.addLayout(self.verticalLayout_page_3_2, 1, 0, 1, 1)
         self.gridLayout_11.addLayout(self.gridLayout_page_3_1, 0, 4, 4, 1)
@@ -554,9 +614,13 @@ class Ui_BBUI(object):
         self.menuAbout = QtWidgets.QMenu(self.menubar)
         self.menuAbout.setObjectName("menuAbout")
         BBUI.setMenuBar(self.menubar)
+
+        #statusBar
         self.statusbar = QtWidgets.QStatusBar(BBUI)
         self.statusbar.setObjectName("statusbar")
         BBUI.setStatusBar(self.statusbar)
+        self.statusbar.showMessage('Ready')
+
         self.actionLoading_Setting_File = QtWidgets.QAction(BBUI)
         self.actionLoading_Setting_File.setObjectName("actionLoading_Setting_File")
         self.actionSaving_Setting_File = QtWidgets.QAction(BBUI)
@@ -604,6 +668,110 @@ class Ui_BBUI(object):
 
     def serial_stopbits_setting(self, stopbits):
         bbapi.serialStopBitsSetting(global_variable.BBSerial, stopbits)
+
+    def serial_recieve_ascii_setting(self, toggledbool):
+        if toggledbool == True:
+            global_variable.BBSerialRecieve.setRecieveMode('ASCII')
+        self.text_send_textEdit.setText(r'<b>Type the words directly!</b>')
+        self.text_send_textEdit.selectAll()
+
+    def serial_recieve_hex_setting(self, toggledbool):
+        if toggledbool == True:
+            global_variable.BBSerialRecieve.setRecieveMode('Hex')
+        self.text_send_textEdit.setText(r'<b>Type the words with escape codes like: \x61\x62\x63</b>')
+        self.text_send_textEdit.selectAll()
+
+    def serial_send_ascii_setting(self, toggledbool):
+        if toggledbool == True:
+            global_variable.BBSerialSend.setSendMode('ASCII')
+
+    def serial_send_hex_setting(self, toggledbool):
+        if toggledbool == True:
+            global_variable.BBSerialSend.setSendMode('Hex')
+
+    def serial_auto_line_feed_setting(self, toggledbool):
+        global_variable.BBSerialRecieve.setAutoNewLine(toggledbool)
+
+    def serial_show_recieve_data_setting(self, toggledbool):
+        global_variable.BBSerialRecieve.setShowSend(toggledbool)
+
+    def serial_show_the_time_setting(self, toggledbool):
+        global_variable.BBSerialRecieve.setShowTheTime(toggledbool)
+
+    def serial_repeat_send_setting(self, toggledbool):
+        global_variable.BBSerialSend.setRepeatSend(toggledbool)
+        bbapi.serialRepeatSend(toggledbool)
+
+    def serial_repeat_send_parameter_setting(self, timepar):
+        global_variable.BBSerialSend.setRepeatSendTime(timepar)
+
+    def serial_text_send_action(self):
+        tarstring = self.text_send_textEdit.toPlainText()
+        bbapi.serialSendData(global_variable.BBSerial, global_variable.BBSerialSend, tarstring)
+
+    def serial_port_open_action(self):
+        if bbapi.serialPortOpen(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve) == True:
+            self.statusbar.showMessage('PORT Open Success!')
+        else:
+            self.statusbar.showMessage('PORT Open Fail!')
+    def serial_recieve_stop_action(self):
+        global_variable.BBSerialRecieve.setRecieveSwitch(False)
+
+    def serial_port_shut_down_action(self):
+        bbapi.serialPortShutDown(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve)
+
+    def serial_clean_browser_action(self):
+        pass
+
+    def serial_save_log_action(self):
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,130 @@
+# -*- coding: utf-8 -*-
+
+"""
+BBflight api
+author: Ninfeion
+"""
+
 import serial
 import serial.tools.list_ports
 import pygame.joystick
+
+class serial_recieve(object):
+    def __init__(self):
+        self._buffer = None
+        self._recieveMode = 'ASCII'
+        self._autoNewLine = True
+        self._showSend = False
+        self._showTheTime = False
+        self._recieveSwitch = False
+
+    def setRecieveSwitch(self, par):
+        if type(par) == bool :
+            self._recieveSwitch = par
+        else:
+            raise TypeError
+
+    def getRecieveSwitch(self):
+        return self._recieveSwitch
+
+    def writeBuffer(self, string):
+        if type(string) == str:
+            self._buffer = string
+        else:
+            raise TypeError
+
+    def readBuffer(self):
+        return self._buffer
+
+    def setRecieveMode(self, mode):
+        if mode == ('ASCII') or (mode == 'Hex'):
+            self._recieveMode = mode
+        else:
+            raise TypeError
+
+    def getRecieveMode(self):
+        return self._recieveMode
+
+    def setAutoNewLine(self, par):
+        if type(par) == bool:
+            self._autoNewLine = par
+        else:
+            raise TypeError
+
+    def isAutoNewLine(self):
+        return self._autoNewLine
+
+    def setShowSend(self, par):
+        if type(par) == bool:
+            self._showSend = par
+        else:
+            raise TypeError
+
+    def isShowSend(self):
+        return self._showSend
+
+    def setShowTheTime(self, par):
+        if type(par) == bool:
+            self._showTheTime = par
+        else:
+            raise TypeError
+
+    def isShowTheTime(self):
+        return self._showTheTime
+
+class serial_send(object):
+    def __init__(self):
+        self._buffer = None
+        self._sendMode = 'ASCII'
+        self._repeatSend = False
+        self._repeatSendPar = 1000
+        self._portSwitch = False
+
+    def setSendSwitch(self, par):
+        if type(par) == bool:
+            self._portSwitch = par
+        else:
+            raise TypeError
+
+    def getSendSwitch(self):
+        return self._portSwitch
+
+    def writeBuffer(self, string):
+        if type(string) == str:
+            self._buffer = string
+        else:
+            raise TypeError
+
+    def readBuffer(self):
+        return self._buffer
+
+    def setSendMode(self, mode):
+        if (mode == 'ASCII') or (mode == 'Hex'):
+            self._sendMode = mode
+        else:
+            raise TypeError
+
+    def getSendMode(self):
+        return self._sendMode
+
+    def setRepeatSend(self, par):
+        if type(par) == bool :
+            self._repeatSend = par
+        else:
+            raise TypeError
+
+    def isRepeatSend(self):
+        return self._repeatSend
+
+    def setRepeatSendTime(self, par):
+        if type(par) == int :
+            self._repeatSendPar = par
+        else:
+            raise TypeError
+
+    def getRepeatSendTime(self):
+        return self._repeatSendPar
+
 
 def serialScanPort():
     port_name = []
@@ -11,6 +135,8 @@ def serialScanPort():
 
 def serialPortSelect(serialclass, portname):
     serialclass.port = portname
+    # serial port default open when set name
+    serialclass.close()
 
 def serialBaudRateSetting(serialclass, baudrate):
     serialclass.baudrate = int(baudrate)
@@ -42,3 +168,43 @@ def serialFlowControlSetting(serialclass, flowcontrolpar):
     elif flowcontrolpar == 'None':
         serialclass.rtscts = False
         serialclass.xonxoff = False
+
+def serialRepeatSend(boolpar):
+    pass
+
+def serialPortOpen(serialclass, serialsendsetclass, serialrecievesetclass):
+    if serialclass.isOpen() == False:
+        try:
+            serialclass.open()
+        except Exception as e:
+            print(e)
+            return False
+    if serialsendsetclass.getSendSwitch() == False:
+        serialsendsetclass.setSendSwitch(True)
+    if serialrecievesetclass.getRecieveSwitch() == False:
+        serialrecievesetclass.setRecieveSwitch(True)
+    return True
+
+def serialPortShutDown(serialclass, serialsendsetclass, serialrecievesetclass):
+    if serialclass.isOpen() == True:
+        serialclass.close()
+    if serialsendsetclass.getSendSwitch() == True:
+        serialsendsetclass.setSendSwitch(False)
+    if serialrecievesetclass.getRecieveSwitch() == True:
+        serialrecievesetclass.setRecieveSwitch(False)
+
+def serialSendData(serialclass, serialsendsetclass, tarstring):
+    if serialclass.isOpen() == True:
+        if serialsendsetclass.getSendSwitch() == True:
+            if serialsendsetclass.getSendMode() == 'ASCII':
+                serialclass.write(tarstring.encode('ascii'))
+                #print('point')
+            elif serialsendsetclass.getSendMode() == 'Hex':
+                import re
+                stringre = re.match(r'([\\\\][x][0-9a-zA-Z][0-9a-zA-Z])+', tarstring)
+                if stringre  != None :
+                    serialclass.write(stringre.group(0).encode('ascii'))
+
+
+
+
