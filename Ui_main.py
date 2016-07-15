@@ -7,19 +7,22 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import app
+import global_variable
+import bbapi
 
 class Ui_BBUI(object):
     def setupUi(self, BBUI):
         BBUI.setObjectName("BBUI")
         BBUI.setEnabled(True)
-        BBUI.resize(900, 770)
+
+        BBUI.resize(900, 725)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(BBUI.sizePolicy().hasHeightForWidth())
         BBUI.setSizePolicy(sizePolicy)
-        BBUI.setMinimumSize(QtCore.QSize(0, 0))
+
+        BBUI.setMinimumSize(QtCore.QSize(900, 725))
         BBUI.setMaximumSize(QtCore.QSize(1400, 800))
         BBUI.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         BBUI.setMouseTracking(False)
@@ -374,6 +377,7 @@ class Ui_BBUI(object):
         self.byte_size_comboBox.addItem('6')
         self.byte_size_comboBox.addItem('7')
         self.byte_size_comboBox.addItem('8')
+        self.byte_size_comboBox.setCurrentIndex(3)
         self.byte_size_comboBox.activated[str].connect(self.serial_bytesize_setting)
 
         self.label_port = QtWidgets.QLabel(self.prot_setting_groupBox)
@@ -389,7 +393,7 @@ class Ui_BBUI(object):
         self.checkout_bit_comboBox.addItem('Odd')
         self.checkout_bit_comboBox.addItem('Mark')
         self.checkout_bit_comboBox.addItem('Space')
-        self.checkout_bit_comboBox.activated[str].connect(self.serial_checkout_bit_setting)
+        self.checkout_bit_comboBox.activated[str].connect(self.serial_checkoutbit_setting)
 
         #stop_bits_comboBox
         self.stop_bits_comboBox = QtWidgets.QComboBox(self.prot_setting_groupBox)
@@ -398,6 +402,7 @@ class Ui_BBUI(object):
         self.stop_bits_comboBox.addItem('1')
         self.stop_bits_comboBox.addItem('1.5')
         self.stop_bits_comboBox.addItem('2')
+        self.stop_bits_comboBox.activated[str].connect(self.serial_stopbits_setting)
 
         #baud_rate_combobox
         self.baud_rate_comboBox = QtWidgets.QComboBox(self.prot_setting_groupBox)
@@ -407,7 +412,8 @@ class Ui_BBUI(object):
         self.baud_rate_comboBox.addItem('38400')
         self.baud_rate_comboBox.addItem('115200')
         self.baud_rate_comboBox.addItem('Custom')
-        self.baud_rate_comboBox.activated[str].connect(self.serial_baud_rate_setting)
+        self.baud_rate_comboBox.activated[str].connect(self.serial_baudrate_setting)
+        self.baud_rate_comboBox.editTextChanged[str].connect(self.serial_baudrate_setting)
         self.gridLayout_page_3_3_1.addWidget(self.baud_rate_comboBox, 1, 1, 1, 1)
 
         #flow_control_comboBox
@@ -417,7 +423,7 @@ class Ui_BBUI(object):
         self.flow_control_comboBox.addItem('None')
         self.flow_control_comboBox.addItem(r'RTS/CTS')
         self.flow_control_comboBox.addItem(r'XON/XOFF')
-        self.flow_control_comboBox.activated[str].connect(self.serial_flow_control_setting)
+        self.flow_control_comboBox.activated[str].connect(self.serial_flowcontrol_setting)
 
         self.label_byte_size = QtWidgets.QLabel(self.prot_setting_groupBox)
         self.label_byte_size.setObjectName("label_byte_size")
@@ -436,7 +442,7 @@ class Ui_BBUI(object):
         #scan_port_button
         self.scan_port_pushButton = QtWidgets.QPushButton(self.prot_setting_groupBox)
         self.scan_port_pushButton.setObjectName("scan_port_pushButton")
-        self.scan_port_pushButton.clicked.connect(self.serial_scan_port_buttonEvent)
+        self.scan_port_pushButton.clicked.connect(self.serial_scanport_buttonEvent)
         self.gridLayout_12.addWidget(self.scan_port_pushButton, 0, 0, 1, 1)
 
         self.verticalLayout_page_3_3.addWidget(self.prot_setting_groupBox)
@@ -571,33 +577,33 @@ class Ui_BBUI(object):
         self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(BBUI)
 
-    def serial_scan_port_buttonEvent(self):
-
-        self.port_comboBox.addItem('')
+    def serial_scanport_buttonEvent(self):
+        self.port_comboBox.clear()
+        serial_portlist = bbapi.serialScanPort()
+        for i in range(len(serial_portlist)):
+            self.port_comboBox.addItem(serial_portlist[i])
 
     def serial_port_select(self, port_name):
-
-        pass
+        bbapi.serialPortSelect(global_variable.BBSerial, port_name)
 
     def serial_bytesize_setting(self, bytesize):
+        bbapi.serialByteSizeSetting(global_variable.BBSerial, bytesize)
 
-        pass
+    def serial_baudrate_setting(self, baudrate):
+        import re
+        if baudrate == 'Custom':
+            self.baud_rate_comboBox.setEditable(True)
+        elif re.match(r'^[1-9]\d*$', baudrate):
+            bbapi.serialBaudRateSetting(global_variable.BBSerial, baudrate)
 
-    def serial_baud_rate_setting(self, baudrate):
+    def serial_checkoutbit_setting(self, checkoutbit):
+        bbapi.serialPortSelect(global_variable.BBSerial, checkoutbit)
 
-        pass
+    def serial_flowcontrol_setting(self, flowcontrol):
+        bbapi.serialFlowControlSetting(global_variable.BBSerial, flowcontrol)
 
-    def serial_checkout_bit_setting(self, checkoutbit):
-
-        pass
-
-    def serial_flow_control_setting(self, flowcontrol):
-
-        pass
-
-
-
-
+    def serial_stopbits_setting(self, stopbits):
+        bbapi.serialStopBitsSetting(global_variable.BBSerial, stopbits)
 
 
 

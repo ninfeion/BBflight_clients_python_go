@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="mainwindow_pic">
+    <file>BB.bmp</file>
+  </qresource>
+</RCC>

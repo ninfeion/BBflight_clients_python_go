@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BBUI</class>
+ <widget class="QMainWindow" name="BBUI">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>911</width>
+    <height>759</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1400</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">BBflight Clients</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_1" stretch="0">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_1_1">
+        <item row="1" column="3" colspan="2">
+         <spacer name="horizontalSpacer_1">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>400</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="connect_button">
+          <property name="text">
+           <string>Connect</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="6">
+         <widget class="QProgressBar" name="battery_progress">
+          <property name="value">
+           <number>100</number>
+          </property>
+          <property name="textVisible">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="address_setting_button">
+          <property name="text">
+           <string>Address Setting</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="8">
+         <widget class="QProgressBar" name="link_quality_progress">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+          <property name="textVisible">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="8">
+         <widget class="QLabel" name="link_quality_label">
+          <property name="text">
+           <string>Link quality:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLineEdit" name="lineEdit"/>
+        </item>
+        <item row="2" column="6">
+         <widget class="QLabel" name="battery_label">
+          <property name="text">
+           <string>Battery:</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="page_flight_control">
+       <attribute name="title">
+        <string>Flight Control</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="2" column="0">
+         <widget class="QGroupBox" name="expansion_function_groupbox">
+          <property name="title">
+           <string>Expansion Function</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="QLabel" name="led_mode_label">
+             <property name="text">
+              <string>LED mode</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="led_mode_combobox"/>
+           </item>
+           <item row="1" column="1">
+            <widget class="QCheckBox" name="expansion_function_groupbox_checkBox_2">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Resevered</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="basic_control_groupbox">
+          <property name="title">
+           <string>Basic Control</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="4" column="1">
+            <widget class="QDoubleSpinBox" name="roll_trim_doubleSpinBox"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="flight_mode_label">
+             <property name="text">
+              <string>Flight mode</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="flight_mode_combobox"/>
+           </item>
+           <item row="7" column="0">
+            <widget class="QCheckBox" name="basic_control_groupbox_checkBox_1">
+             <property name="text">
+              <string>Resevered</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QDoubleSpinBox" name="pitch_trim_doubleSpinBox"/>
+           </item>
+           <item row="3" column="1">
+            <widget class="QDoubleSpinBox" name="thrus_mode_doubleSpinBox"/>
+           </item>
+           <item row="8" column="1">
+            <widget class="QRadioButton" name="basic_control_groupbox_radioButton_3">
+             <property name="text">
+              <string>Resevered</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QRadioButton" name="basic_control_groupbox_radioButton_2">
+             <property name="text">
+              <string>Resevered</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QRadioButton" name="basic_control_groupbox_radioButton_1">
+             <property name="text">
+              <string>Resevered</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="roll_trim_label">
+             <property name="text">
+              <string>Roll Trim</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="pitch_trim_label">
+             <property name="text">
+              <string>Pitch Trim</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="thrust_mode_label">
+             <property name="text">
+              <string>Thrust mode</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="adcanced_flight_control_groupBox">
+          <property name="title">
+           <string>Advanced Flight Control</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QLabel" name="max_angle_rate_label">
+             <property name="text">
+              <string>Max angle(/rate)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="max_yaw_angle_rate_label">
+             <property name="text">
+              <string>Max Yaw angle(/rate)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QDoubleSpinBox" name="slewlimit_doubleSpinBox"/>
+           </item>
+           <item row="3" column="1">
+            <widget class="QDoubleSpinBox" name="min_thrust_doubleSpinBox"/>
+           </item>
+           <item row="5" column="1">
+            <widget class="QDoubleSpinBox" name="thrust_lowering_slewrate_doubleSpinBox"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="max_thrust_label_2">
+             <property name="text">
+              <string>Max thrust(%)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="min_thrust_label">
+             <property name="text">
+              <string>Min thrust(%)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="slewlimit_label">
+             <property name="text">
+              <string>SlewLimit(%)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="thrust_lowering_slewrate_label">
+             <property name="text">
+              <string>&lt;p style = &quot;line-height:1.0&quot;&gt;&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Thrust lowering &lt;/p&gt;&lt;p&gt;slewrate(%/sec)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="max_angle_doubleSpinBox"/>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="max_yaw_angle_doubleSpinBox"/>
+           </item>
+           <item row="2" column="1">
+            <widget class="QDoubleSpinBox" name="max_thrust_doubleSpinBox"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="1" rowspan="4">
+         <widget class="QGroupBox" name="filght_status_groupbox">
+          <property name="title">
+           <string>Filght Status</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="3" column="0">
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="0">
+              <layout class="QGridLayout" name="gridLayout_2_1">
+               <item row="1" column="1">
+                <widget class="QLabel" name="thrust_label">
+                 <property name="text">
+                  <string>Thrust</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
+                <widget class="QLineEdit" name="thrust_actual_lineEdit"/>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLabel" name="resevered_label_1">
+                 <property name="text">
+                  <string>Resevered</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QLineEdit" name="thrust_target_lineEdit"/>
+               </item>
+               <item row="2" column="2">
+                <widget class="QLineEdit" name="pitch_target_lineEdit"/>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLabel" name="yaw_label">
+                 <property name="text">
+                  <string>Yaw</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QLineEdit" name="resevered_lineEdit_1">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="roll_label">
+                 <property name="text">
+                  <string>Roll</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <widget class="QLineEdit" name="yaw_actual_lineEdit"/>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLineEdit" name="yaw_target_lineEdit"/>
+               </item>
+               <item row="3" column="3">
+                <widget class="QLineEdit" name="roll_actual_lineEdit"/>
+               </item>
+               <item row="5" column="3">
+                <widget class="QLineEdit" name="resevered_lineEdit_2">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QLineEdit" name="roll_target_lineEdit"/>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="pitch_label">
+                 <property name="text">
+                  <string>Pitch</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="3">
+                <widget class="QLineEdit" name="pitch_actual_lineEdit"/>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLabel" name="target_label">
+                 <property name="text">
+                  <string>Target</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QLabel" name="actual_label">
+                 <property name="text">
+                  <string>Actual</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="1">
+              <layout class="QVBoxLayout" name="verticalLayout_2_2">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_2_2_1">
+                 <item>
+                  <widget class="QLabel" name="Thr_label">
+                   <property name="text">
+                    <string>Thr</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="M1_label">
+                   <property name="text">
+                    <string>M1</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="M2_label">
+                   <property name="text">
+                    <string>M2</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="M3_label">
+                   <property name="text">
+                    <string>M3</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="M4_label">
+                   <property name="text">
+                    <string>M4</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_2_2_2">
+                 <item>
+                  <widget class="QProgressBar" name="Thr_progressBar">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="value">
+                    <number>100</number>
+                   </property>
+                   <property name="textVisible">
+                    <bool>false</bool>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QProgressBar" name="M1_progressBar">
+                   <property name="value">
+                    <number>50</number>
+                   </property>
+                   <property name="textVisible">
+                    <bool>false</bool>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QProgressBar" name="M2_progressBar">
+                   <property name="value">
+                    <number>50</number>
+                   </property>
+                   <property name="textVisible">
+                    <bool>false</bool>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QProgressBar" name="M3_progressBar">
+                   <property name="value">
+                    <number>50</number>
+                   </property>
+                   <property name="textVisible">
+                    <bool>false</bool>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QProgressBar" name="M4_progressBar">
+                   <property name="value">
+                    <number>50</number>
+                   </property>
+                   <property name="textVisible">
+                    <bool>false</bool>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0" rowspan="2">
+            <widget class="QFrame" name="flight_attitude_show">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_13">
+              <item row="0" column="2">
+               <spacer name="verticalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Preferred</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>405</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="flight_angle_pic_label">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/mainwindow_pic/BB.bmp&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <spacer name="verticalSpacer_1">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_controller_setting">
+       <attribute name="title">
+        <string>Controller Setting</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="controlle_mapping_setting_groupBox">
+          <property name="title">
+           <string>Controller Mapping Setting</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="4" column="0" colspan="3">
+            <widget class="QFrame" name="mapping_view_frame">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_10">
+              <item row="0" column="0">
+               <widget class="QLabel" name="mapping_view_pic_label">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/mainwindow_pic/BB.bmp&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="dev_scan_pushButton">
+             <property name="text">
+              <string>Scan</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="dev_view_comboBox"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="controller_choose_label">
+             <property name="text">
+              <string>Controller Choose</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_serial_port_debug">
+       <attribute name="title">
+        <string>Serial Port Debug</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_11">
+        <item row="0" column="1" rowspan="4" colspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_page_3_3">
+          <item>
+           <widget class="QGroupBox" name="prot_setting_groupBox">
+            <property name="title">
+             <string>Port Setting</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_12">
+             <item row="4" column="0">
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="1" column="0">
+              <layout class="QGridLayout" name="gridLayout_page_3_3_1">
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_baud_rate">
+                 <property name="text">
+                  <string>Baud Rate</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="port_comboBox"/>
+               </item>
+               <item row="2" column="1">
+                <widget class="QComboBox" name="byte_size_comboBox"/>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_port">
+                 <property name="text">
+                  <string>Port</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QComboBox" name="checkout_bit_comboBox"/>
+               </item>
+               <item row="4" column="1">
+                <widget class="QComboBox" name="stop_bits_comboBox"/>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="baud_rate_comboBox"/>
+               </item>
+               <item row="5" column="1">
+                <widget class="QComboBox" name="flow_control_comboBox"/>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_byte_size">
+                 <property name="text">
+                  <string>Byte Size</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_checkout_bit">
+                 <property name="text">
+                  <string>Checkout Bit</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="label_stop_bits">
+                 <property name="text">
+                  <string>Stop Bits</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="label_flow_control">
+                 <property name="text">
+                  <string>Flow Control</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="scan_port_pushButton">
+               <property name="text">
+                <string>Scan Port</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="recieve_setting_groupBox">
+            <property name="title">
+             <string>Recieve Setting</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_14">
+             <item row="0" column="0">
+              <layout class="QHBoxLayout" name="horizontalLayout_page_3_3_2">
+               <item>
+                <widget class="QRadioButton" name="radioButton_recieve_ascii">
+                 <property name="text">
+                  <string>ASCII</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_recieve_hex">
+                 <property name="text">
+                  <string>Hex</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="1" column="0">
+              <layout class="QVBoxLayout" name="verticalLayout_page_3_3_3">
+               <item>
+                <widget class="QCheckBox" name="checkBox_auto_line_feed">
+                 <property name="text">
+                  <string>Auto Line Feed</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBox_show_recieve_data">
+                 <property name="text">
+                  <string>Show What We Send</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBox_show_the_time">
+                 <property name="text">
+                  <string>Show The Time</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="send_setting_groupBox">
+            <property name="title">
+             <string>Send Setting</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_15">
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="spinBox_repeat_par"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QCheckBox" name="checkBox_repeat_send">
+               <property name="text">
+                <string>Repeat</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QRadioButton" name="radioButton_send_ascii">
+               <property name="text">
+                <string>ASCII</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QRadioButton" name="radioButton_send_hex">
+               <property name="text">
+                <string>Hex</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="label_unit_ms">
+               <property name="text">
+                <string>ms</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="4" rowspan="4">
+         <layout class="QGridLayout" name="gridLayout_page_3_1">
+          <item row="0" column="0">
+           <widget class="QTextBrowser" name="text_recieve_textBrowser">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="lineWrapMode">
+             <enum>QTextEdit::WidgetWidth</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QVBoxLayout" name="verticalLayout_page_3_2">
+            <property name="spacing">
+             <number>6</number>
+            </property>
+            <property name="topMargin">
+             <number>6</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_page_3_2_1">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetDefaultConstraint</enum>
+              </property>
+              <item>
+               <widget class="QTextEdit" name="text_send_textEdit"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="text_send_pushButton">
+                <property name="text">
+                 <string>Send</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_page_3_2_2">
+              <item>
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="start_pushButton">
+                <property name="text">
+                 <string>Start</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pause_pushButton">
+                <property name="text">
+                 <string>Pause</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="stop_pushButton">
+                <property name="text">
+                 <string>Stop</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="clean_pushButton">
+                <property name="text">
+                 <string>Clean</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="save_log_pushButton">
+                <property name="text">
+                 <string>Save Log</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>911</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionLoading_Setting_File"/>
+    <addaction name="actionSaving_Setting_File"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionBBfilght"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionLoading_Setting_File">
+   <property name="text">
+    <string>Loading Setting File</string>
+   </property>
+  </action>
+  <action name="actionSaving_Setting_File">
+   <property name="text">
+    <string>Saving Setting File</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionBBfilght">
+   <property name="text">
+    <string>BBfilght</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="src/ui.qrc"/>
+ </resources>
+ <connections/>
+</ui>
