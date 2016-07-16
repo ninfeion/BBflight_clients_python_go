@@ -8,9 +8,13 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import global_variable
-import bbapi
+import bbapi,threading,time
 
 class Ui_BBUI(object):
+    def __init__(self):
+        super().__init__()
+        self._recieveTextBrowserUpdate = True
+
     def setupUi(self, BBUI):
         BBUI.setObjectName("BBUI")
         BBUI.setEnabled(True)
@@ -680,13 +684,13 @@ class Ui_BBUI(object):
     def serial_send_ascii_setting(self, toggledbool):
         if toggledbool == True:
             global_variable.BBSerialSend.setSendMode('ASCII')
-        self.text_send_textEdit.setText(r'<b>Type the words directly!</b>')
+        self.text_send_textEdit.setText(r'Type the words <b>directly!</b>')
         self.text_send_textEdit.selectAll()
 
     def serial_send_hex_setting(self, toggledbool):
         if toggledbool == True:
             global_variable.BBSerialSend.setSendMode('Hex')
-        self.text_send_textEdit.setText(r'<b>Type the words with decimal ascii code like: 656667 -> ABC</b>')
+        self.text_send_textEdit.setText(r'Type the words with decimal ascii code like: <b>656667 -> ABC</b>')
         self.text_send_textEdit.selectAll()
 
     def serial_auto_line_feed_setting(self, toggledbool):
@@ -707,7 +711,7 @@ class Ui_BBUI(object):
 
     def serial_text_send_action(self):
         tarstring = self.text_send_textEdit.toPlainText()
-        if bbapi.serialSendData(global_variable.BBSerial, global_variable.BBSerialSend, tarstring) == True:
+        if global_variable.BBSerialSend.sendData(global_variable.BBSerial, tarstring) == True:
             self.statusbar.showMessage('%s OPENED, %d >>   Rx: %d Bytes Tx: %d Bytes ' %
                                        (global_variable.BBSerial.name, global_variable.BBSerial.baudrate,
                                         global_variable.BBSerialRecieve.rxByteCount, global_variable.BBSerialSend.txByteCount))
@@ -718,10 +722,35 @@ class Ui_BBUI(object):
         partem = bbapi.serialPortOpen(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve)
         if partem == True:
             self.statusbar.showMessage('%s Open Success!' % global_variable.BBSerial.name)
+            global_variable.BBSerialRecieve.recieveThreading(global_variable.BBSerial, True, 0.01)
+            ui.serialRecieveTextBrowerUpdataThreading(global_variable.BBSerialRecieve, True, 0.01)
+
         elif partem == False:
             self.statusbar.showMessage('%s Open Fail!' % global_variable.BBSerial.name)
         elif partem == 'DataRecieveContinue':
             self.statusbar.showMessage('%s Recieving Open!' % global_variable.BBSerial.name)
+            global_variable.BBSerialRecieve.recieveThreading(global_variable.BBSerial, True, 0.01)
+
+
+    def serialRecieveTextBrowerUpdataThreading(self, serialrecieveclass, openorstop, refreshtime):
+        if openorstop == True:
+            self._recieveTextBrowserUpdate = True
+            self.rtbThreading = threading.Thread(target=self.serialRecieveTextBrowserUpdate, args=(serialrecieveclass, refreshtime))
+            self.rtbThreading.setDaemon(True)
+            self.rtbThreading.start()
+        elif openorstop == False:
+            self._recieveTextBrowserUpdate = False
+            self.rtbThreading.join()
+
+    def serialRecieveTextBrowserUpdate(self, serialrecieveclass, refreshtime):
+        while self._recieveTextBrowserUpdate == True:
+            time.sleep(refreshtime)
+            strtemp = serialrecieveclass.readBuffer()
+            serialrecieveclass.writeBuffer('')
+
+            if strtemp != '':
+                self.text_recieve_textBrowser.append(strtemp)
+
 
     def serial_recieve_stop_action(self):
         global_variable.BBSerialRecieve.setRecieveSwitch(False)
@@ -872,6 +901,9 @@ class Ui_BBUI(object):
 
 #import ui_rc
 
+
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -879,5 +911,7 @@ if __name__ == "__main__":
     ui = Ui_BBUI()
     ui.setupUi(BBUI)
     BBUI.show()
+
+
     sys.exit(app.exec_())
 
