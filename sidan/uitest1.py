@@ -1,32 +1,24 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\BBflight\python_ninfeion\eric_workspace\pyqt_demo1\main_3.ui'
+# Form implementation generated from reading ui file 'Ui_main_G.ui'
 #
 # Created by: PyQt5 UI code generator 5.6
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import global_variable
-import bbapi,threading,time
 
 class Ui_BBUI(object):
-    def __init__(self):
-        super().__init__()
-        self._recieveTextBrowserUpdate = True
-
     def setupUi(self, BBUI):
         BBUI.setObjectName("BBUI")
         BBUI.setEnabled(True)
-
-        BBUI.resize(900, 725)
+        BBUI.resize(911, 759)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(BBUI.sizePolicy().hasHeightForWidth())
         BBUI.setSizePolicy(sizePolicy)
-
-        BBUI.setMinimumSize(QtCore.QSize(900, 725))
+        BBUI.setMinimumSize(QtCore.QSize(0, 0))
         BBUI.setMaximumSize(QtCore.QSize(1400, 800))
         BBUI.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         BBUI.setMouseTracking(False)
@@ -99,7 +91,6 @@ class Ui_BBUI(object):
         self.basic_control_groupbox.setObjectName("basic_control_groupbox")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.basic_control_groupbox)
         self.gridLayout_5.setObjectName("gridLayout_5")
-
         self.roll_trim_doubleSpinBox = QtWidgets.QDoubleSpinBox(self.basic_control_groupbox)
         self.roll_trim_doubleSpinBox.setObjectName("roll_trim_doubleSpinBox")
         self.gridLayout_5.addWidget(self.roll_trim_doubleSpinBox, 4, 1, 1, 1)
@@ -317,21 +308,17 @@ class Ui_BBUI(object):
         spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout_3.addItem(spacerItem2, 3, 0, 1, 1)
         self.tabWidget.addTab(self.page_flight_control, "")
-
-        #page_controller_setting
         self.page_controller_setting = QtWidgets.QWidget()
         self.page_controller_setting.setObjectName("page_controller_setting")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.page_controller_setting)
-
         self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.controller_mapping_setting_groupBox = QtWidgets.QGroupBox(self.page_controller_setting)
-        self.controller_mapping_setting_groupBox.setObjectName("controller_mapping_setting_groupBox")
-        self.gridLayout_9 = QtWidgets.QGridLayout(self.controller_mapping_setting_groupBox)
+        self.controlle_mapping_setting_groupBox = QtWidgets.QGroupBox(self.page_controller_setting)
+        self.controlle_mapping_setting_groupBox.setObjectName("controlle_mapping_setting_groupBox")
+        self.gridLayout_9 = QtWidgets.QGridLayout(self.controlle_mapping_setting_groupBox)
         self.gridLayout_9.setObjectName("gridLayout_9")
 
-        #mapping_view_frame
-        self.mapping_view_frame = QtWidgets.QFrame(self.controller_mapping_setting_groupBox)
+        self.mapping_view_frame = QtWidgets.QFrame(self.controlle_mapping_setting_groupBox)
         self.mapping_view_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.mapping_view_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.mapping_view_frame.setObjectName("mapping_view_frame")
@@ -339,407 +326,49 @@ class Ui_BBUI(object):
         self.gridLayout_10 = QtWidgets.QGridLayout(self.mapping_view_frame)
         self.gridLayout_10.setObjectName("gridLayout_10")
 
-        """ CONTROLLER CHOOSE MENU"""
-        """First LINE"""
-        self.label_controller_1_1 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_1_1.setObjectName("label_controller_1_1")
-        self.label_controller_1_1.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_1_1, 0, 2, 1, 1)
-
-        self.lineEdit_controller_1_1 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_1_1.setObjectName("lineEdit_controller_1_1")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_1_1, 0, 3, 1, 1)
-
-        self.comboBox_controller_1_1 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_1_1.setObjectName("comboBox_controller_1_1")
-        self.gridLayout_10.addWidget(self.comboBox_controller_1_1, 0, 4, 1, 1)
-
-        self.line_controller_1_1 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_1_1.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_1_1.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_1_1.setObjectName("line_controller_1_1")
-        self.gridLayout_10.addWidget(self.line_controller_1_1, 0, 5, 1, 1)
-
-        self.label_controller_2_1 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_2_1.setObjectName("label_controller_2_1")
-        self.label_controller_2_1.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_2_1, 0, 6, 1, 1)
-
-        self.lineEdit_controller_2_1 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_2_1.setObjectName("lineEdit_controller_2_1")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_2_1, 0, 7, 1, 1)
-
-        self.comboBox_controller_2_1 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_2_1.setObjectName("comboBox_controller_2_1")
-        self.gridLayout_10.addWidget(self.comboBox_controller_2_1, 0, 8, 1, 1)
-
-        self.line_controller_2_1 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_2_1.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_2_1.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_2_1.setObjectName("line_controller_2_1")
-        self.gridLayout_10.addWidget(self.line_controller_2_1, 0, 9, 1, 1)
-
-        self.label_controller_3_1 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_3_1.setObjectName("label_controller_3_1")
-        self.label_controller_3_1.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_3_1, 0, 10, 1, 1)
-
-        self.lineEdit_controller_3_1 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_3_1.setObjectName("lineEdit_controller_3_1")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_3_1, 0, 11, 1, 1)
-
-        self.comboBox_controller_3_1 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_3_1.setObjectName("comboBox_controller_3_1")
-        self.gridLayout_10.addWidget(self.comboBox_controller_3_1, 0, 12, 1, 1)
-
-        """Second LINE"""
-        self.label_controller_1_2 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_1_2.setObjectName("label_controller_1_2")
-        self.label_controller_1_2.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_1_2, 1, 2, 1, 1)
-
-        self.lineEdit_controller_1_2 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_1_2.setObjectName("lineEdit_controller_1_2")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_1_2, 1, 3, 1, 1)
-
-        self.comboBox_controller_1_2 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_1_2.setObjectName("comboBox_controller_1_1")
-        self.gridLayout_10.addWidget(self.comboBox_controller_1_2, 1, 4, 1, 1)
-
-        self.line_controller_1_2 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_1_2.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_1_2.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_1_2.setObjectName("line_controller_1_2")
-        self.gridLayout_10.addWidget(self.line_controller_1_2, 1, 5, 1, 1)
-
-        self.label_controller_2_2 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_2_2.setObjectName("label_controller_2_2")
-        self.label_controller_2_2.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_2_2, 1, 6, 1, 1)
-
-        self.lineEdit_controller_2_2 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_2_2.setObjectName("lineEdit_controller_2_2")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_2_2, 1, 7, 1, 1)
-
-        self.comboBox_controller_2_2 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_2_2.setObjectName("comboBox_controller_2_2")
-        self.gridLayout_10.addWidget(self.comboBox_controller_2_2, 1, 8, 1, 1)
-
-        self.line_controller_2_2 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_2_2.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_2_2.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_2_2.setObjectName("line_controller_2_2")
-        self.gridLayout_10.addWidget(self.line_controller_2_2, 1, 9, 1, 1)
-
-        self.label_controller_3_2 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_3_2.setObjectName("label_controller_3_2")
-        self.label_controller_3_2.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_3_2, 1, 10, 1, 1)
-
-        self.lineEdit_controller_3_2 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_3_2.setObjectName("lineEdit_controller_3_2")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_3_2, 1, 11, 1, 1)
-
-        self.comboBox_controller_3_2 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_3_2.setObjectName("comboBox_controller_3_2")
-        self.gridLayout_10.addWidget(self.comboBox_controller_3_2, 1, 12, 1, 1)
-
-        """Third LINE"""
-        self.label_controller_1_3 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_1_3.setObjectName("label_controller_1_3")
-        self.label_controller_1_3.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_1_3, 2, 2, 1, 1)
-
-        self.lineEdit_controller_1_3 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_1_3.setObjectName("lineEdit_controller_1_3")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_1_3, 2, 3, 1, 1)
-
-        self.comboBox_controller_1_3 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_1_3.setObjectName("comboBox_controller_1_3")
-        self.gridLayout_10.addWidget(self.comboBox_controller_1_3, 2, 4, 1, 1)
-
-        self.line_controller_1_3 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_1_3.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_1_3.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_1_3.setObjectName("line_controller_1_3")
-        self.gridLayout_10.addWidget(self.line_controller_1_3, 2, 5, 1, 1)
-
-        self.label_controller_2_3 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_2_3.setObjectName("label_controller_2_3")
-        self.label_controller_2_3.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_2_3, 2, 6, 1, 1)
-
-        self.lineEdit_controller_2_3 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_2_3.setObjectName("lineEdit_controller_2_3")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_2_3, 2, 7, 1, 1)
-
-        self.comboBox_controller_2_3 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_2_3.setObjectName("comboBox_controller_2_3")
-        self.gridLayout_10.addWidget(self.comboBox_controller_2_3, 2, 8, 1, 1)
-
-        self.line_controller_2_3 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_2_3.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_2_3.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_2_3.setObjectName("line_controller_2_3")
-        self.gridLayout_10.addWidget(self.line_controller_2_3, 2, 9, 1, 1)
-
-        self.label_controller_3_3 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_3_3.setObjectName("label_controller_3_3")
-        self.label_controller_3_3.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_3_3, 2, 10, 1, 1)
-
-        self.lineEdit_controller_3_3 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_3_3.setObjectName("lineEdit_controller_3_3")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_3_3, 2, 11, 1, 1)
-
-        self.comboBox_controller_3_3 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_3_3.setObjectName("comboBox_controller_3_3")
-        self.gridLayout_10.addWidget(self.comboBox_controller_3_3, 2, 12, 1, 1)
-
-        """Fourth LINE"""
-        self.label_controller_1_4 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_1_4.setObjectName("label_controller_1_4")
-        self.label_controller_1_4.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_1_4, 3, 2, 1, 1)
-
-        self.lineEdit_controller_1_4 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_1_4.setObjectName("lineEdit_controller_1_4")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_1_4, 3, 3, 1, 1)
-
-        self.comboBox_controller_1_4 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_1_4.setObjectName("comboBox_controller_1_4")
-        self.gridLayout_10.addWidget(self.comboBox_controller_1_4, 3, 4, 1, 1)
-
-        self.line_controller_1_4 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_1_4.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_1_4.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_1_4.setObjectName("line_controller_1_4")
-        self.gridLayout_10.addWidget(self.line_controller_1_4, 3, 5, 1, 1)
-
-        self.label_controller_2_4 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_2_4.setObjectName("label_controller_2_4")
-        self.label_controller_2_4.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_2_4, 3, 6, 1, 1)
-
-        self.lineEdit_controller_2_4 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_2_4.setObjectName("lineEdit_controller_2_4")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_2_4, 3, 7, 1, 1)
-
-        self.comboBox_controller_2_4 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_2_4.setObjectName("comboBox_controller_2_4")
-        self.gridLayout_10.addWidget(self.comboBox_controller_2_4, 3, 8, 1, 1)
-
-        self.line_controller_2_4 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_2_4.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_2_4.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_2_4.setObjectName("line_controller_2_4")
-        self.gridLayout_10.addWidget(self.line_controller_2_4, 3, 9, 1, 1)
-
-        self.label_controller_3_4 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_3_4.setObjectName("label_controller_3_4")
-        self.label_controller_3_4.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_3_4, 3, 10, 1, 1)
-
-        self.lineEdit_controller_3_4 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_3_4.setObjectName("lineEdit_controller_3_4")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_3_4, 3, 11, 1, 1)
-
-        self.comboBox_controller_3_4 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_3_4.setObjectName("comboBox_controller_3_4")
-        self.gridLayout_10.addWidget(self.comboBox_controller_3_4, 3, 12, 1, 1)
-
-        """Fifth LINE"""
-        self.label_controller_1_5 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_1_5.setObjectName("label_controller_1_5")
-        self.label_controller_1_5.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_1_5, 4, 2, 1, 1)
-
-        self.lineEdit_controller_1_5 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_1_5.setObjectName("lineEdit_controller_1_5")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_1_5, 4, 3, 1, 1)
-
-        self.comboBox_controller_1_5 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_1_5.setObjectName("comboBox_controller_1_5")
-        self.gridLayout_10.addWidget(self.comboBox_controller_1_5, 4, 4, 1, 1)
-
-        self.line_controller_1_5 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_1_5.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_1_5.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_1_5.setObjectName("line_controller_1_5")
-        self.gridLayout_10.addWidget(self.line_controller_1_5, 4, 5, 1, 1)
-
-        self.label_controller_2_5 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_2_5.setObjectName("label_controller_2_5")
-        self.label_controller_2_5.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_2_5, 4, 6, 1, 1)
-
-        self.lineEdit_controller_2_5 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_2_5.setObjectName("lineEdit_controller_2_5")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_2_5, 4, 7, 1, 1)
-
-        self.comboBox_controller_2_5 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_2_5.setObjectName("comboBox_controller_2_5")
-        self.gridLayout_10.addWidget(self.comboBox_controller_2_5, 4, 8, 1, 1)
-
-        self.line_controller_2_5 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_2_5.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_2_5.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_2_5.setObjectName("line_controller_2_5")
-        self.gridLayout_10.addWidget(self.line_controller_2_5, 4, 9, 1, 1)
-
-        self.label_controller_3_5 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_3_5.setObjectName("label_controller_3_5")
-        self.label_controller_3_5.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_3_5, 4, 10, 1, 1)
-
-        self.lineEdit_controller_3_5 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_3_5.setObjectName("lineEdit_controller_3_5")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_3_5, 4, 11, 1, 1)
-
-        self.comboBox_controller_3_5 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_3_5.setObjectName("comboBox_controller_3_5")
-        self.gridLayout_10.addWidget(self.comboBox_controller_3_5, 4, 12, 1, 1)
-
-        """Sixth LINE"""
-        self.label_controller_1_6 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_1_6.setObjectName("label_controller_1_6")
-        self.label_controller_1_6.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_1_6, 5, 2, 1, 1)
-
-        self.lineEdit_controller_1_6 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_1_6.setObjectName("lineEdit_controller_1_6")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_1_6, 5, 3, 1, 1)
-
-        self.comboBox_controller_1_6 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_1_6.setObjectName("comboBox_controller_1_6")
-        self.gridLayout_10.addWidget(self.comboBox_controller_1_6, 5, 4, 1, 1)
-
-        self.line_controller_1_6 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_1_6.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_1_6.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_1_6.setObjectName("line_controller_1_6")
-        self.gridLayout_10.addWidget(self.line_controller_1_6, 5, 5, 1, 1)
-
-        self.label_controller_2_6 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_2_6.setObjectName("label_controller_2_6")
-        self.label_controller_2_6.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_2_6, 5, 6, 1, 1)
-
-        self.lineEdit_controller_2_6 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_2_6.setObjectName("lineEdit_controller_2_6")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_2_6, 5, 7, 1, 1)
-
-        self.comboBox_controller_2_6 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_2_6.setObjectName("comboBox_controller_2_6")
-        self.gridLayout_10.addWidget(self.comboBox_controller_2_6, 5, 8, 1, 1)
-
-        self.line_controller_2_6 = QtWidgets.QFrame(self.mapping_view_frame)
-        self.line_controller_2_6.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_controller_2_6.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_controller_2_6.setObjectName("line_controller_2_6")
-        self.gridLayout_10.addWidget(self.line_controller_2_6, 5, 9, 1, 1)
-
-        self.label_controller_3_6 = QtWidgets.QLabel(self.mapping_view_frame)
-        self.label_controller_3_6.setObjectName("label_controller_3_6")
-        self.label_controller_3_6.setText('UnDef')
-        self.gridLayout_10.addWidget(self.label_controller_3_6, 5, 10, 1, 1)
-
-        self.lineEdit_controller_3_6 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_controller_3_6.setObjectName("lineEdit_controller_3_6")
-        self.gridLayout_10.addWidget(self.lineEdit_controller_3_6, 5, 11, 1, 1)
-
-        self.comboBox_controller_3_6 = QtWidgets.QComboBox(self.mapping_view_frame)
-        self.comboBox_controller_3_6.setObjectName("comboBox_controller_3_6")
-        self.gridLayout_10.addWidget(self.comboBox_controller_3_6, 5, 12, 1, 1)
-
-        self.CONTROLLER_LABEL_GROUP = []
-        self.CONTROLLER_LINEEDIT_GROUP = []
-        self.CONTROLLER_COMBOBOX_GROUP = []
-
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_1_1)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_2_1)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_3_1)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_1_2)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_2_2)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_3_2)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_1_3)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_2_3)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_3_3)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_1_4)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_2_4)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_3_4)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_1_5)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_2_5)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_3_5)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_1_6)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_2_6)
-        self.CONTROLLER_LABEL_GROUP.append(self.label_controller_3_6)
-
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_1_1)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_2_1)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_3_1)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_1_2)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_2_2)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_3_2)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_1_3)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_2_3)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_3_3)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_1_4)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_2_4)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_3_4)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_1_5)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_2_5)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_3_5)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_1_6)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_2_6)
-        self.CONTROLLER_LINEEDIT_GROUP.append(self.lineEdit_controller_3_6)
-
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_1_1)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_2_1)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_3_1)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_1_2)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_2_2)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_3_2)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_1_3)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_2_3)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_3_3)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_1_4)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_2_4)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_3_4)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_1_5)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_2_5)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_3_5)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_1_6)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_2_6)
-        self.CONTROLLER_COMBOBOX_GROUP.append(self.comboBox_controller_3_6)
-
-
-        #self.mapping_view_pic_label = QtWidgets.QLabel(self.mapping_view_frame)
-        #self.mapping_view_pic_label.setObjectName("mapping_view_pic_label")
-        #self.gridLayout_10.addWidget(self.mapping_view_pic_label, 0, 0, 1, 1)
-
+        self.gridLayout_17 = QtWidgets.QGridLayout()
+        self.gridLayout_17.setObjectName("gridLayout_17")
+        #label_pin off
+        self.label = QtWidgets.QLabel(self.mapping_view_frame)
+        self.label.setObjectName("label")
+        self.gridLayout_17.addWidget(self.label, 0, 0, 1, 1)
+        #lineEdit_pin off
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.mapping_view_frame)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.gridLayout_17.addWidget(self.lineEdit_2, 0, 1, 1, 1)
+
+        self.comboBox = QtWidgets.QComboBox(self.mapping_view_frame)
+        self.comboBox.setObjectName("comboBox")
+
+        self.gridLayout_17.addWidget(self.comboBox, 0, 2, 1, 1)
+        self.gridLayout_10.addLayout(self.gridLayout_17, 0, 0, 1, 1)
+
+        self.gridLayout_16 = QtWidgets.QGridLayout()
+        self.gridLayout_16.setObjectName("gridLayout_16")
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.mapping_view_frame)
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.gridLayout_16.addWidget(self.lineEdit_3, 0, 1, 1, 1)
+        self.label_2 = QtWidgets.QLabel(self.mapping_view_frame)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_16.addWidget(self.label_2, 0, 0, 1, 1)
+        self.comboBox_2 = QtWidgets.QComboBox(self.mapping_view_frame)
+        self.comboBox_2.setObjectName("comboBox_2")
+        self.gridLayout_16.addWidget(self.comboBox_2, 0, 2, 1, 1)
+        self.gridLayout_10.addLayout(self.gridLayout_16, 0, 1, 1, 1)
         self.gridLayout_9.addWidget(self.mapping_view_frame, 4, 0, 1, 3)
         spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_9.addItem(spacerItem3, 1, 1, 1, 1)
-
-        #dev_scan_pushButton
-        self.dev_scan_pushButton = QtWidgets.QPushButton(self.controller_mapping_setting_groupBox)
+        self.dev_scan_pushButton = QtWidgets.QPushButton(self.controlle_mapping_setting_groupBox)
         self.dev_scan_pushButton.setObjectName("dev_scan_pushButton")
         self.gridLayout_9.addWidget(self.dev_scan_pushButton, 1, 0, 1, 1)
-        self.dev_scan_pushButton.clicked.connect(self.controller_scan)
-
-        self.dev_view_comboBox = QtWidgets.QComboBox(self.controller_mapping_setting_groupBox)
+        self.dev_view_comboBox = QtWidgets.QComboBox(self.controlle_mapping_setting_groupBox)
         self.dev_view_comboBox.setObjectName("dev_view_comboBox")
         self.gridLayout_9.addWidget(self.dev_view_comboBox, 2, 1, 1, 1)
-        self.dev_view_comboBox.activated[str].connect(self.controller_choose)
-
-        self.controller_choose_label = QtWidgets.QLabel(self.controller_mapping_setting_groupBox)
+        self.controller_choose_label = QtWidgets.QLabel(self.controlle_mapping_setting_groupBox)
         self.controller_choose_label.setObjectName("controller_choose_label")
         self.gridLayout_9.addWidget(self.controller_choose_label, 2, 0, 1, 1)
-
-        self.gridLayout_4.addWidget(self.controller_mapping_setting_groupBox, 0, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.controlle_mapping_setting_groupBox, 0, 0, 1, 1)
         self.tabWidget.addTab(self.page_controller_setting, "")
-
         self.page_serial_port_debug = QtWidgets.QWidget()
         self.page_serial_port_debug.setObjectName("page_serial_port_debug")
         self.gridLayout_11 = QtWidgets.QGridLayout(self.page_serial_port_debug)
@@ -758,70 +387,27 @@ class Ui_BBUI(object):
         self.label_baud_rate = QtWidgets.QLabel(self.prot_setting_groupBox)
         self.label_baud_rate.setObjectName("label_baud_rate")
         self.gridLayout_page_3_3_1.addWidget(self.label_baud_rate, 1, 0, 1, 1)
-
-        #port_comboBox
         self.port_comboBox = QtWidgets.QComboBox(self.prot_setting_groupBox)
         self.port_comboBox.setObjectName("port_comboBox")
         self.gridLayout_page_3_3_1.addWidget(self.port_comboBox, 0, 1, 1, 1)
-        self.port_comboBox.activated.connect(self.serial_port_shut_down_action)
-        self.port_comboBox.activated[str].connect(self.serial_port_select)
-
-        #byte_size_comboBox
         self.byte_size_comboBox = QtWidgets.QComboBox(self.prot_setting_groupBox)
         self.byte_size_comboBox.setObjectName("byte_size_comboBox")
         self.gridLayout_page_3_3_1.addWidget(self.byte_size_comboBox, 2, 1, 1, 1)
-        self.byte_size_comboBox.addItem('5')
-        self.byte_size_comboBox.addItem('6')
-        self.byte_size_comboBox.addItem('7')
-        self.byte_size_comboBox.addItem('8')
-        self.byte_size_comboBox.setCurrentIndex(3)
-        self.byte_size_comboBox.activated[str].connect(self.serial_bytesize_setting)
-
         self.label_port = QtWidgets.QLabel(self.prot_setting_groupBox)
         self.label_port.setObjectName("label_port")
         self.gridLayout_page_3_3_1.addWidget(self.label_port, 0, 0, 1, 1)
-
-        #checkout_bit_comboBox
         self.checkout_bit_comboBox = QtWidgets.QComboBox(self.prot_setting_groupBox)
         self.checkout_bit_comboBox.setObjectName("checkout_bit_comboBox")
         self.gridLayout_page_3_3_1.addWidget(self.checkout_bit_comboBox, 3, 1, 1, 1)
-        self.checkout_bit_comboBox.addItem('None')
-        self.checkout_bit_comboBox.addItem('Even')
-        self.checkout_bit_comboBox.addItem('Odd')
-        self.checkout_bit_comboBox.addItem('Mark')
-        self.checkout_bit_comboBox.addItem('Space')
-        self.checkout_bit_comboBox.activated[str].connect(self.serial_checkoutbit_setting)
-
-        #stop_bits_comboBox
         self.stop_bits_comboBox = QtWidgets.QComboBox(self.prot_setting_groupBox)
         self.stop_bits_comboBox.setObjectName("stop_bits_comboBox")
         self.gridLayout_page_3_3_1.addWidget(self.stop_bits_comboBox, 4, 1, 1, 1)
-        self.stop_bits_comboBox.addItem('1')
-        self.stop_bits_comboBox.addItem('1.5')
-        self.stop_bits_comboBox.addItem('2')
-        self.stop_bits_comboBox.activated[str].connect(self.serial_stopbits_setting)
-
-        #baud_rate_combobox
         self.baud_rate_comboBox = QtWidgets.QComboBox(self.prot_setting_groupBox)
         self.baud_rate_comboBox.setObjectName("baud_rate_comboBox")
-        self.baud_rate_comboBox.addItem('9600')
-        self.baud_rate_comboBox.addItem('19200')
-        self.baud_rate_comboBox.addItem('38400')
-        self.baud_rate_comboBox.addItem('115200')
-        self.baud_rate_comboBox.addItem('Custom')
-        self.baud_rate_comboBox.activated[str].connect(self.serial_baudrate_setting)
-        self.baud_rate_comboBox.editTextChanged[str].connect(self.serial_baudrate_setting)
         self.gridLayout_page_3_3_1.addWidget(self.baud_rate_comboBox, 1, 1, 1, 1)
-
-        #flow_control_comboBox
         self.flow_control_comboBox = QtWidgets.QComboBox(self.prot_setting_groupBox)
         self.flow_control_comboBox.setObjectName("flow_control_comboBox")
         self.gridLayout_page_3_3_1.addWidget(self.flow_control_comboBox, 5, 1, 1, 1)
-        self.flow_control_comboBox.addItem('None')
-        self.flow_control_comboBox.addItem(r'RTS/CTS')
-        self.flow_control_comboBox.addItem(r'XON/XOFF')
-        self.flow_control_comboBox.activated[str].connect(self.serial_flowcontrol_setting)
-
         self.label_byte_size = QtWidgets.QLabel(self.prot_setting_groupBox)
         self.label_byte_size.setObjectName("label_byte_size")
         self.gridLayout_page_3_3_1.addWidget(self.label_byte_size, 2, 0, 1, 1)
@@ -835,13 +421,9 @@ class Ui_BBUI(object):
         self.label_flow_control.setObjectName("label_flow_control")
         self.gridLayout_page_3_3_1.addWidget(self.label_flow_control, 5, 0, 1, 1)
         self.gridLayout_12.addLayout(self.gridLayout_page_3_3_1, 1, 0, 1, 1)
-
-        #scan_port_button
         self.scan_port_pushButton = QtWidgets.QPushButton(self.prot_setting_groupBox)
         self.scan_port_pushButton.setObjectName("scan_port_pushButton")
-        self.scan_port_pushButton.clicked.connect(self.serial_scanport_buttonEvent)
         self.gridLayout_12.addWidget(self.scan_port_pushButton, 0, 0, 1, 1)
-
         self.verticalLayout_page_3_3.addWidget(self.prot_setting_groupBox)
         self.recieve_setting_groupBox = QtWidgets.QGroupBox(self.page_serial_port_debug)
         self.recieve_setting_groupBox.setObjectName("recieve_setting_groupBox")
@@ -849,43 +431,26 @@ class Ui_BBUI(object):
         self.gridLayout_14.setObjectName("gridLayout_14")
         self.horizontalLayout_page_3_3_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_page_3_3_2.setObjectName("horizontalLayout_page_3_3_2")
-
-        #radioButton_recieve_ascii
         self.radioButton_recieve_ascii = QtWidgets.QRadioButton(self.recieve_setting_groupBox)
+        self.radioButton_recieve_ascii.setChecked(True)
+        self.radioButton_recieve_ascii.setAutoRepeat(False)
         self.radioButton_recieve_ascii.setObjectName("radioButton_recieve_ascii")
         self.horizontalLayout_page_3_3_2.addWidget(self.radioButton_recieve_ascii)
-        self.radioButton_recieve_ascii.toggled[bool].connect(self.serial_recieve_ascii_setting)
-        self.radioButton_recieve_ascii.setChecked(True)
-
-        #radioButton_recieve_hex
         self.radioButton_recieve_hex = QtWidgets.QRadioButton(self.recieve_setting_groupBox)
         self.radioButton_recieve_hex.setObjectName("radioButton_recieve_hex")
         self.horizontalLayout_page_3_3_2.addWidget(self.radioButton_recieve_hex)
-        self.radioButton_recieve_hex.toggled[bool].connect(self.serial_recieve_hex_setting)
         self.gridLayout_14.addLayout(self.horizontalLayout_page_3_3_2, 0, 0, 1, 1)
         self.verticalLayout_page_3_3_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_page_3_3_3.setObjectName("verticalLayout_page_3_3_3")
-
-        #checkbox_auto_line_feed
         self.checkBox_auto_line_feed = QtWidgets.QCheckBox(self.recieve_setting_groupBox)
         self.checkBox_auto_line_feed.setObjectName("checkBox_auto_line_feed")
         self.verticalLayout_page_3_3_3.addWidget(self.checkBox_auto_line_feed)
-        self.checkBox_auto_line_feed.toggled[bool].connect(self.serial_auto_line_feed_setting)
-        self.checkBox_auto_line_feed.setChecked(True)
-
-
-        #checkbox_show_recieve_data
         self.checkBox_show_recieve_data = QtWidgets.QCheckBox(self.recieve_setting_groupBox)
         self.checkBox_show_recieve_data.setObjectName("checkBox_show_recieve_data")
         self.verticalLayout_page_3_3_3.addWidget(self.checkBox_show_recieve_data)
-        self.checkBox_show_recieve_data.toggled[bool].connect(self.serial_show_recieve_data_setting)
-
-        #checkbox_show_the_time
         self.checkBox_show_the_time = QtWidgets.QCheckBox(self.recieve_setting_groupBox)
         self.checkBox_show_the_time.setObjectName("checkBox_show_the_time")
         self.verticalLayout_page_3_3_3.addWidget(self.checkBox_show_the_time)
-        self.checkBox_show_the_time.toggled[bool].connect(self.serial_show_the_time_setting)
-
         spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_page_3_3_3.addItem(spacerItem5)
         self.gridLayout_14.addLayout(self.verticalLayout_page_3_3_3, 1, 0, 1, 1)
@@ -894,35 +459,18 @@ class Ui_BBUI(object):
         self.send_setting_groupBox.setObjectName("send_setting_groupBox")
         self.gridLayout_15 = QtWidgets.QGridLayout(self.send_setting_groupBox)
         self.gridLayout_15.setObjectName("gridLayout_15")
-
-        #spinBox_repeat_par
         self.spinBox_repeat_par = QtWidgets.QSpinBox(self.send_setting_groupBox)
         self.spinBox_repeat_par.setObjectName("spinBox_repeat_par")
         self.gridLayout_15.addWidget(self.spinBox_repeat_par, 1, 1, 1, 1)
-        self.spinBox_repeat_par.setSingleStep(100)
-        self.spinBox_repeat_par.setMaximum(1000000) # maximum of 1000 second
-        self.spinBox_repeat_par.valueChanged[int].connect(self.serial_repeat_send_parameter_setting)
-        self.spinBox_repeat_par.setValue(1000)
-
-        #checkBox_repeat_send
         self.checkBox_repeat_send = QtWidgets.QCheckBox(self.send_setting_groupBox)
         self.checkBox_repeat_send.setObjectName("checkBox_repeat_send")
         self.gridLayout_15.addWidget(self.checkBox_repeat_send, 1, 0, 1, 1)
-        self.checkBox_repeat_send.toggled[bool].connect(self.serial_repeat_send_setting)
-
-        #radioButton_send_ascii
         self.radioButton_send_ascii = QtWidgets.QRadioButton(self.send_setting_groupBox)
         self.radioButton_send_ascii.setObjectName("radioButton_send_ascii")
         self.gridLayout_15.addWidget(self.radioButton_send_ascii, 0, 0, 1, 1)
-        self.radioButton_send_ascii.setChecked(True)  # will connect toggled
-        self.radioButton_send_ascii.toggled[bool].connect(self.serial_send_ascii_setting)
-
-        #radioButton_send_hex
         self.radioButton_send_hex = QtWidgets.QRadioButton(self.send_setting_groupBox)
         self.radioButton_send_hex.setObjectName("radioButton_send_hex")
         self.gridLayout_15.addWidget(self.radioButton_send_hex, 0, 1, 1, 1)
-        self.radioButton_send_hex.toggled[bool].connect(self.serial_send_hex_setting)
-
         self.label_unit_ms = QtWidgets.QLabel(self.send_setting_groupBox)
         self.label_unit_ms.setObjectName("label_unit_ms")
         self.gridLayout_15.addWidget(self.label_unit_ms, 1, 2, 1, 1)
@@ -930,10 +478,7 @@ class Ui_BBUI(object):
         self.gridLayout_11.addLayout(self.verticalLayout_page_3_3, 0, 1, 4, 2)
         self.gridLayout_page_3_1 = QtWidgets.QGridLayout()
         self.gridLayout_page_3_1.setObjectName("gridLayout_page_3_1")
-
-        #text_recieve_textBrowser
         self.text_recieve_textBrowser = QtWidgets.QTextBrowser(self.page_serial_port_debug)
-
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -942,7 +487,6 @@ class Ui_BBUI(object):
         self.text_recieve_textBrowser.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.text_recieve_textBrowser.setLineWrapMode(QtWidgets.QTextEdit.WidgetWidth)
         self.text_recieve_textBrowser.setObjectName("text_recieve_textBrowser")
-
         self.gridLayout_page_3_1.addWidget(self.text_recieve_textBrowser, 0, 0, 1, 1)
         self.verticalLayout_page_3_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_page_3_2.setContentsMargins(-1, 6, -1, 0)
@@ -951,54 +495,32 @@ class Ui_BBUI(object):
         self.horizontalLayout_page_3_2_1 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_page_3_2_1.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout_page_3_2_1.setObjectName("horizontalLayout_page_3_2_1")
-
-        #text_send_textEdit
         self.text_send_textEdit = QtWidgets.QTextEdit(self.page_serial_port_debug)
         self.text_send_textEdit.setObjectName("text_send_textEdit")
         self.horizontalLayout_page_3_2_1.addWidget(self.text_send_textEdit)
-
-        #text_send_pushButton
         self.text_send_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.text_send_pushButton.setObjectName("text_send_pushButton")
         self.horizontalLayout_page_3_2_1.addWidget(self.text_send_pushButton)
-        self.text_send_pushButton.clicked.connect(self.serial_text_send_action)
-
         self.verticalLayout_page_3_2.addLayout(self.horizontalLayout_page_3_2_1)
         self.horizontalLayout_page_3_2_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_page_3_2_2.setObjectName("horizontalLayout_page_3_2_2")
         spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_page_3_2_2.addItem(spacerItem6)
-
-        #start_pushButton
         self.start_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.start_pushButton.setObjectName("start_pushButton")
         self.horizontalLayout_page_3_2_2.addWidget(self.start_pushButton)
-        self.start_pushButton.clicked.connect(self.serial_port_open_action)
-
-        #pause_pushButton
         self.pause_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.pause_pushButton.setObjectName("pause_pushButton")
         self.horizontalLayout_page_3_2_2.addWidget(self.pause_pushButton)
-        self.pause_pushButton.clicked.connect(self.serial_recieve_stop_action)
-
-        #stop_pushButton
         self.stop_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.stop_pushButton.setObjectName("stop_pushButton")
         self.horizontalLayout_page_3_2_2.addWidget(self.stop_pushButton)
-        self.stop_pushButton.clicked.connect(self.serial_port_shut_down_action)
-
-        #clean_pushButton
         self.clean_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.clean_pushButton.setObjectName("clean_pushButton")
         self.horizontalLayout_page_3_2_2.addWidget(self.clean_pushButton)
-        self.clean_pushButton.clicked.connect(self.serial_clean_browser_action)
-
-        #save_log_pushButton
         self.save_log_pushButton = QtWidgets.QPushButton(self.page_serial_port_debug)
         self.save_log_pushButton.setObjectName("save_log_pushButton")
         self.horizontalLayout_page_3_2_2.addWidget(self.save_log_pushButton)
-        self.clean_pushButton.clicked.connect(self.serial_save_log_action)
-
         self.verticalLayout_page_3_2.addLayout(self.horizontalLayout_page_3_2_2)
         self.gridLayout_page_3_1.addLayout(self.verticalLayout_page_3_2, 1, 0, 1, 1)
         self.gridLayout_11.addLayout(self.gridLayout_page_3_1, 0, 4, 4, 1)
@@ -1013,13 +535,9 @@ class Ui_BBUI(object):
         self.menuAbout = QtWidgets.QMenu(self.menubar)
         self.menuAbout.setObjectName("menuAbout")
         BBUI.setMenuBar(self.menubar)
-
-        #statusBar
         self.statusbar = QtWidgets.QStatusBar(BBUI)
         self.statusbar.setObjectName("statusbar")
         BBUI.setStatusBar(self.statusbar)
-        self.statusbar.showMessage('Ready')
-
         self.actionLoading_Setting_File = QtWidgets.QAction(BBUI)
         self.actionLoading_Setting_File.setObjectName("actionLoading_Setting_File")
         self.actionSaving_Setting_File = QtWidgets.QAction(BBUI)
@@ -1037,232 +555,8 @@ class Ui_BBUI(object):
         self.menubar.addAction(self.menuAbout.menuAction())
 
         self.retranslateUi(BBUI)
-
-        #tabWidget default choose page3
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(BBUI)
-
-    def serial_scanport_buttonEvent(self):
-        self.port_comboBox.clear()
-        serial_portlist = bbapi.serialScanPort()
-        for i in range(len(serial_portlist)):
-            self.port_comboBox.addItem(serial_portlist[i])
-
-    def serial_port_select(self, port_name):
-        bbapi.serialPortSelect(global_variable.BBSerial, port_name)
-
-    def serial_bytesize_setting(self, bytesize):
-        bbapi.serialByteSizeSetting(global_variable.BBSerial, bytesize)
-
-    def serial_baudrate_setting(self, baudrate):
-        import re
-        if baudrate == 'Custom':
-            self.baud_rate_comboBox.setEditable(True)
-        elif re.match(r'^[1-9]\d*$', baudrate):
-            bbapi.serialBaudRateSetting(global_variable.BBSerial, baudrate)
-
-    def serial_checkoutbit_setting(self, checkoutbit):
-        bbapi.serialPortSelect(global_variable.BBSerial, checkoutbit)
-
-    def serial_flowcontrol_setting(self, flowcontrol):
-        bbapi.serialFlowControlSetting(global_variable.BBSerial, flowcontrol)
-
-    def serial_stopbits_setting(self, stopbits):
-        bbapi.serialStopBitsSetting(global_variable.BBSerial, stopbits)
-
-    def serial_recieve_ascii_setting(self, toggledbool):
-        if toggledbool == True:
-            global_variable.BBSerialRecieve.setRecieveMode('ASCII')
-
-    def serial_recieve_hex_setting(self, toggledbool):
-        if toggledbool == True:
-            global_variable.BBSerialRecieve.setRecieveMode('Hex')
-
-    def serial_send_ascii_setting(self, toggledbool):
-        if toggledbool == True:
-            global_variable.BBSerialSend.setSendMode('ASCII')
-        self.text_send_textEdit.setText(r'Type the words <b>directly!</b>')
-        self.text_send_textEdit.selectAll()
-
-    def serial_send_hex_setting(self, toggledbool):
-        if toggledbool == True:
-            global_variable.BBSerialSend.setSendMode('Hex')
-        self.text_send_textEdit.setText(r'Type the words with decimal ascii code like: <b>656667 -> ABC</b>')
-        self.text_send_textEdit.selectAll()
-
-    def serial_auto_line_feed_setting(self, toggledbool):
-        global_variable.BBSerialRecieve.setAutoNewLine(toggledbool)
-
-    def serial_show_recieve_data_setting(self, toggledbool):
-        global_variable.BBSerialRecieve.setShowSend(toggledbool)
-
-    def serial_show_the_time_setting(self, toggledbool):
-        global_variable.BBSerialRecieve.setShowTheTime(toggledbool)
-
-    def serial_repeat_send_setting(self, toggledbool):
-        global_variable.BBSerialSend.setRepeatSend(toggledbool)
-        bbapi.serialRepeatSend(toggledbool)
-
-    def serial_repeat_send_parameter_setting(self, timepar):
-        global_variable.BBSerialSend.setRepeatSendTime(timepar)
-
-    def serial_text_send_action(self):
-        tarstring = self.text_send_textEdit.toPlainText()
-        if global_variable.BBSerialSend.sendData(global_variable.BBSerial, tarstring) == True:
-            self.statusbar.showMessage('%s OPENED, %d >>   Rx: %d Bytes Tx: %d Bytes ' %
-                                       (global_variable.BBSerial.name, global_variable.BBSerial.baudrate,
-                                        global_variable.BBSerialRecieve.rxByteCount, global_variable.BBSerialSend.txByteCount))
-        else:
-            self.statusbar.showMessage('Send Fail!!!')
-        if global_variable.BBSerialRecieve.isShowSend() == True:
-            if global_variable.BBSerialRecieve.isShowTheTime() == True:
-                self.text_recieve_textBrowser.append('<b>'+'SEND-' + time.strftime("%H:%M:%S", time.localtime()) + ':</b>' + tarstring)
-            else:
-                self.text_recieve_textBrowser.append('<b>SEND:</b>' + tarstring)
-            #self.text_recieve_textBrowser.insertPlainText('\n')
-
-    def serial_port_open_action(self):
-        partem = bbapi.serialPortOpen(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve)
-        if partem == True:
-            self.statusbar.showMessage('%s Open Success!' % global_variable.BBSerial.name)
-            global_variable.BBSerialRecieve.recieveThreading(global_variable.BBSerial, True, 0.01)
-            self.serialRecieveUpdateThreading(global_variable.BBSerialRecieve, True, 0.5)
-
-        elif partem == False:
-            self.statusbar.showMessage('%s Open Fail!' % global_variable.BBSerial.name)
-        elif partem == 'DataRecieveContinue':
-            self.statusbar.showMessage('%s Recieving Open!' % global_variable.BBSerial.name)
-
-    def serialRecieveUpdateThreading(self, serialrecieveclass, openorstop, refreshtime):
-        if openorstop == True:
-            self._recieveTextBrowserUpdate = True
-            self.rtbThreading = threading.Thread(target=self.serialRecieveUpdate, args=(serialrecieveclass, refreshtime))
-            self.rtbThreading.setDaemon(True)
-            self.rtbThreading.start()
-        elif openorstop == False:
-            self._recieveTextBrowserUpdate = False
-            self.rtbThreading.join()
-
-    def serialRecieveUpdate(self, serialrecieveclass, refreshtime):
-        while self._recieveTextBrowserUpdate == True:
-            time.sleep(refreshtime)
-            if serialrecieveclass.getRecieveSwitch() == True:
-                self.statusbar.showMessage('%s OPENED, %d >>   Rx: %d Bytes Tx: %d Bytes ' %
-                                           (global_variable.BBSerial.name, global_variable.BBSerial.baudrate,
-                                            serialrecieveclass.rxByteCount,
-                                            global_variable.BBSerialSend.txByteCount))
-            strtemp = serialrecieveclass.readBuffer()
-
-
-            if strtemp != '':
-                if serialrecieveclass.isAutoNewLine() == False:
-                    self.text_recieve_textBrowser.insertPlainText(strtemp)
-                    #self.text_recieve_textBrowser.insertHtml('<b>RECIEVE:</b>' + strtemp)
-                else:
-                    if serialrecieveclass.isShowTheTime() == True:
-                        self.text_recieve_textBrowser.append('<b>' + 'RECIEVE-' + time.strftime("%H:%M:%S", time.localtime()) + ':</b>' + strtemp)
-                    else:
-                        self.text_recieve_textBrowser.append('<b>RECIEVE:</b>' + strtemp)
-                serialrecieveclass.writeBuffer('')
-
-    def serial_recieve_stop_action(self):
-        global_variable.BBSerialRecieve.setRecieveSwitch(False)
-        self.statusbar.showMessage('%s Recieving Stop!' % global_variable.BBSerial.name)
-
-        global_variable.BBSerialRecieve.rxByteCount = 0
-        global_variable.BBSerialSend.txByteCount = 0
-
-    def serial_port_shut_down_action(self):
-        bbapi.serialPortShutDown(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve)
-        if global_variable.BBSerial.name != None:
-            self.statusbar.showMessage('%s CLOSED!!!' % global_variable.BBSerial.name)
-
-    def serial_clean_browser_action(self):
-        self.text_recieve_textBrowser.clear()
-        global_variable.BBSerialRecieve.rxByteCount = 0
-        global_variable.BBSerialSend.txByteCount = 0
-
-    def serial_save_log_action(self):
-        pass
-
-    def controller_scan(self):
-        self.dev_view_comboBox.clear()
-        dev_num = global_variable.BBController.controllerScan()
-        for i in range(dev_num):
-            self.dev_view_comboBox.addItem(str(i +1))
-
-    def controller_choose(self, dev_num_str):
-        global_variable.BBController.controllerChoose(int(dev_num_str) -1)
-
-        #y = 0
-        #x = 2
-
-        #for i in range(global_variable.BBController.axesNum):
-        #    if (i == 3) or (i == 7):
-        #        locals()['self.line' + str(i)] = QtWidgets.QFrame(self.mapping_view_frame)
-        #        locals()['self.line' + str(i)].setFrameShape(QtWidgets.QFrame.VLine)
-        #        locals()['self.line' + str(i)].setFrameShadow(QtWidgets.QFrame.Sunken)
-        #        locals()['self.line' + str(i)].setObjectName("line")
-        #        self.gridLayout_10.addWidget(locals()['self.line'+str(i)], y, x+i, 1, 1)
-        #    else:
-        #        locals()['self.label' + str(i)] = QtWidgets.QLabel('AxIs %s'%i, self.mapping_view_frame)
-        #        locals()['self.label' + str(i)].setObjrctName('controller_label%s'%i)
-        #        self.gridLayout_10.addWidget(locals()['self.label'+str(i)], y, x+i, 1, 1)
-
-        #self.update()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     def retranslateUi(self, BBUI):
         _translate = QtCore.QCoreApplication.translate
@@ -1302,14 +596,11 @@ class Ui_BBUI(object):
         self.M2_label.setText(_translate("BBUI", "M2"))
         self.M3_label.setText(_translate("BBUI", "M3"))
         self.M4_label.setText(_translate("BBUI", "M4"))
-
-        self.flight_angle_pic_label.setText(_translate("BBUI", "<html><head/><body><p><img src=\":/src/BB.bmp\"/></p></body></html>"))
-
+        self.flight_angle_pic_label.setText(_translate("BBUI", "<html><head/><body><p><img src=\":/mainwindow_pic/BB.bmp\"/></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.page_flight_control), _translate("BBUI", "Flight Control"))
-        self.controller_mapping_setting_groupBox.setTitle(_translate("BBUI", "Controller Mapping Setting"))
-
-        #self.mapping_view_pic_label.setText(_translate("BBUI", "<html><head/><body><p><img src=\":/src/BB.bmp\"/></p></body></html>"))
-
+        self.controlle_mapping_setting_groupBox.setTitle(_translate("BBUI", "Controller Mapping Setting"))
+        self.label.setText(_translate("BBUI", "TextLabel"))
+        self.label_2.setText(_translate("BBUI", "TextLabel"))
         self.dev_scan_pushButton.setText(_translate("BBUI", "Scan"))
         self.controller_choose_label.setText(_translate("BBUI", "Controller Choose"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.page_controller_setting), _translate("BBUI", "Controller Setting"))
@@ -1346,13 +637,7 @@ class Ui_BBUI(object):
         self.actionExit.setText(_translate("BBUI", "Exit"))
         self.actionBBfilght.setText(_translate("BBUI", "BBfilght"))
 
-#import ui_rc
-#def guiLoopThread():
-#    while True:
-#        if global_variable.BBSerialRecieve.bufferReadyEventCheck() == True:
-
-
-
+import ui_rc
 
 if __name__ == "__main__":
     import sys

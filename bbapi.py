@@ -7,7 +7,7 @@ author: Ninfeion
 
 import serial
 import serial.tools.list_ports
-import pygame.joystick
+#import pygame.joystick
 import threading,time
 
 class serial_recieve(object):
