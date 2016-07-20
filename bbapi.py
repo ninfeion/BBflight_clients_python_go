@@ -10,11 +10,10 @@ import serial.tools.list_ports
 import pygame.joystick
 import threading,time
 
-
-
 class serial_recieve(object):
     def __init__(self):
         self._buffer = ''
+        self._bufferReady = False
         self._recieveMode = 'ASCII'
         self._autoNewLine = True
         self._showSend = False
@@ -27,7 +26,16 @@ class serial_recieve(object):
         while self._recieveLoop == True:
             time.sleep(refreshtime)
             if self.getRecieveSwitch() == True:
-                self.writeBuffer(serialclass.read(serialclass.in_waiting).decode('ascii'))
+                if serialclass.in_waiting != 0:
+                    self.rxByteCount += serialclass.in_waiting
+                    self._buffer += serialclass.read(serialclass.in_waiting).decode('ascii')
+                    self._bufferReady = True
+
+    def bufferReadyEventCheck(self):
+        return self._bufferReady
+
+    def bufferReadyEventReset(self):
+        self._bufferReady = False
 
     def recieveThreading(self, serialclass, openorstop, refreshtime):
         if openorstop == True:
@@ -38,7 +46,6 @@ class serial_recieve(object):
         elif openorstop == False:
             self._recieveLoop = False
             self._rThreading.join()
-
 
     def setRecieveSwitch(self, par):
         if type(par) == bool :

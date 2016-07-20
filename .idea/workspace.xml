@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72b5116a-11f4-45d6-8d38-22e712138db1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui_main.ui" afterPath="$PROJECT_DIR$/Ui_main.ui" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui_main.py" afterPath="$PROJECT_DIR$/Ui_main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbapi.py" afterPath="$PROJECT_DIR$/bbapi.py" />
@@ -24,12 +25,12 @@
     <favorites_list name="BBflight_clients_python" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Ui_main.py" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Ui_main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Ui_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="753" column="0" selection-start-line="753" selection-start-column="0" selection-end-line="753" selection-end-column="0" />
+            <state relative-caret-position="49">
+              <caret line="750" column="35" selection-start-line="750" selection-start-column="35" selection-end-line="750" selection-end-column="35" />
               <folding>
                 <element signature="e#246#288#0" expanded="true" />
               </folding>
@@ -37,24 +38,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bbapi.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="bbapi.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bbapi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+            <state relative-caret-position="289">
+              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding>
                 <element signature="e#64#77#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="thread.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/thread/thread.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="75" column="15" selection-start-line="75" selection-start-column="15" selection-end-line="75" selection-end-column="15" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -85,6 +76,8 @@
         <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/../button_slot_test.py" />
         <option value="$PROJECT_DIR$/global_variable.py" />
+        <option value="$PROJECT_DIR$/../Ninfeion_Git/pyqt5_demo_5_calculater.pyw" />
+        <option value="$PROJECT_DIR$/serialapp.py" />
         <option value="$PROJECT_DIR$/bbapi.py" />
         <option value="$PROJECT_DIR$/Ui_main.py" />
       </list>
@@ -140,8 +133,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -162,6 +153,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -183,23 +176,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="BBflight_clients_python" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Ui_main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="BBflight_clients_python" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -251,6 +227,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="BBflight_clients_python" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bbapi.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="pyqt5_demo_5_calculater.pyw" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Ninfeion_Git" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="BBflight_clients_python" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Ninfeion_Git/pyqt5_demo_5_calculater.pyw" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -391,18 +384,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.Ui_main" />
-      <item index="1" class="java.lang.String" itemvalue="Python.app" />
-      <item index="2" class="java.lang.String" itemvalue="Python.app (1)" />
-      <item index="3" class="java.lang.String" itemvalue="Python.pyqt5_demo_4.pyw" />
-      <item index="4" class="java.lang.String" itemvalue="Python.bbapi" />
+      <item index="1" class="java.lang.String" itemvalue="Python.app (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.pyqt5_demo_4.pyw" />
+      <item index="3" class="java.lang.String" itemvalue="Python.bbapi" />
+      <item index="4" class="java.lang.String" itemvalue="Python.pyqt5_demo_5_calculater.pyw" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.Ui_main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.bbapi" />
-        <item index="2" class="java.lang.String" itemvalue="Python.pyqt5_demo_4.pyw" />
-        <item index="3" class="java.lang.String" itemvalue="Python.app (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Python.app" />
+        <item index="1" class="java.lang.String" itemvalue="Python.pyqt5_demo_5_calculater.pyw" />
+        <item index="2" class="java.lang.String" itemvalue="Python.bbapi" />
+        <item index="3" class="java.lang.String" itemvalue="Python.pyqt5_demo_4.pyw" />
+        <item index="4" class="java.lang.String" itemvalue="Python.app (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -440,11 +433,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27939317" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27939317" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39823008" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41466498" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -474,7 +467,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="33" />
+      <option name="time" value="44" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -483,10 +476,21 @@
         <watch expression="tarstring" language="Python" />
         <watch expression="global_variable.BBSerialRecieve" language="Python" />
         <watch expression="serialclass.in_waiting" language="Python" />
+        <watch expression="global_variable.BBSerialSend" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/bbapi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="37" column="62" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
+          <folding>
+            <element signature="e#64#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Ui_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -721,13 +725,6 @@
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.399/thread.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.650/thread.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.148/thread.py" />
-    <entry file="file://C:/Extra Software/Python351/Lib/ctypes/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="452" column="0" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Extra Software/Python351/Lib/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
@@ -752,46 +749,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Extra Software/Python351/Lib/site-packages/serial/serialutil.py">
+    <entry file="file://$USER_HOME$/Downloads/thread/thread.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="566" column="0" selection-start-line="566" selection-start-column="0" selection-end-line="566" selection-end-column="0" />
+        <state relative-caret-position="432">
+          <caret line="75" column="15" selection-start-line="75" selection-start-column="15" selection-end-line="75" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Ninfeion_Git/pyqt5_demo_5_calculater.pyw">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="59" column="33" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Extra Software/Python351/Lib/ctypes/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serialapp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Extra Software/Python351/Lib/site-packages/serial/serialwin32.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="297" column="0" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
+        <state relative-caret-position="245">
+          <caret line="257" column="0" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/thread/thread.py">
+    <entry file="file://C:/Extra Software/Python351/Lib/site-packages/serial/serialutil.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="75" column="15" selection-start-line="75" selection-start-column="15" selection-end-line="75" selection-end-column="15" />
+        <state relative-caret-position="145">
+          <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbapi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-          <folding>
-            <element signature="e#64#77#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Ui_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="753" column="0" selection-start-line="753" selection-start-column="0" selection-end-line="753" selection-end-column="0" />
+        <state relative-caret-position="49">
+          <caret line="750" column="35" selection-start-line="750" selection-start-column="35" selection-end-line="750" selection-end-column="35" />
           <folding>
             <element signature="e#246#288#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbapi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="e#64#77#0" expanded="true" />
           </folding>
         </state>
       </provider>

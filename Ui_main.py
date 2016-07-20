@@ -317,9 +317,12 @@ class Ui_BBUI(object):
         spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout_3.addItem(spacerItem2, 3, 0, 1, 1)
         self.tabWidget.addTab(self.page_flight_control, "")
+
+        #page_controller_setting
         self.page_controller_setting = QtWidgets.QWidget()
         self.page_controller_setting.setObjectName("page_controller_setting")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.page_controller_setting)
+
         self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.controlle_mapping_setting_groupBox = QtWidgets.QGroupBox(self.page_controller_setting)
@@ -642,7 +645,9 @@ class Ui_BBUI(object):
         self.menubar.addAction(self.menuAbout.menuAction())
 
         self.retranslateUi(BBUI)
-        self.tabWidget.setCurrentIndex(1)
+
+        #tabWidget default choose page3
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(BBUI)
 
     def serial_scanport_buttonEvent(self):
@@ -723,14 +728,13 @@ class Ui_BBUI(object):
         if partem == True:
             self.statusbar.showMessage('%s Open Success!' % global_variable.BBSerial.name)
             global_variable.BBSerialRecieve.recieveThreading(global_variable.BBSerial, True, 0.01)
-            ui.serialRecieveTextBrowerUpdataThreading(global_variable.BBSerialRecieve, True, 0.01)
+            self.serialRecieveTextBrowerUpdataThreading(global_variable.BBSerialRecieve, True, 0.5)
 
         elif partem == False:
             self.statusbar.showMessage('%s Open Fail!' % global_variable.BBSerial.name)
         elif partem == 'DataRecieveContinue':
             self.statusbar.showMessage('%s Recieving Open!' % global_variable.BBSerial.name)
-            global_variable.BBSerialRecieve.recieveThreading(global_variable.BBSerial, True, 0.01)
-
+            #global_variable.BBSerialRecieve.recieveThreading(global_variable.BBSerial, True, 0.01)
 
     def serialRecieveTextBrowerUpdataThreading(self, serialrecieveclass, openorstop, refreshtime):
         if openorstop == True:
@@ -745,12 +749,19 @@ class Ui_BBUI(object):
     def serialRecieveTextBrowserUpdate(self, serialrecieveclass, refreshtime):
         while self._recieveTextBrowserUpdate == True:
             time.sleep(refreshtime)
+            self.statusbar.showMessage('%s OPENED, %d >>   Rx: %d Bytes Tx: %d Bytes ' %
+                                       (global_variable.BBSerial.name, global_variable.BBSerial.baudrate,
+                                        global_variable.BBSerialRecieve.rxByteCount,
+                                        global_variable.BBSerialSend.txByteCount))
             strtemp = serialrecieveclass.readBuffer()
-            serialrecieveclass.writeBuffer('')
 
             if strtemp != '':
-                self.text_recieve_textBrowser.append(strtemp)
-
+                if serialrecieveclass.isAutoNewLine() == False:
+                    self.text_recieve_textBrowser.insertPlainText(strtemp)
+                    #self.text_recieve_textBrowser.insertHtml('<b>RECIEVE:</b>' + strtemp)
+                else:
+                    self.text_recieve_textBrowser.append('<b>RECIEVE:</b>' + strtemp)
+                serialrecieveclass.writeBuffer('')
 
     def serial_recieve_stop_action(self):
         global_variable.BBSerialRecieve.setRecieveSwitch(False)
@@ -900,6 +911,9 @@ class Ui_BBUI(object):
         self.actionBBfilght.setText(_translate("BBUI", "BBfilght"))
 
 #import ui_rc
+#def guiLoopThread():
+#    while True:
+#        if global_variable.BBSerialRecieve.bufferReadyEventCheck() == True:
 
 
 
@@ -911,7 +925,5 @@ if __name__ == "__main__":
     ui = Ui_BBUI()
     ui.setupUi(BBUI)
     BBUI.show()
-
-
     sys.exit(app.exec_())
 
