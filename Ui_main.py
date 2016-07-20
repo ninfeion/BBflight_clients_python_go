@@ -542,7 +542,10 @@ class Ui_BBUI(object):
         self.gridLayout_11.addLayout(self.verticalLayout_page_3_3, 0, 1, 4, 2)
         self.gridLayout_page_3_1 = QtWidgets.QGridLayout()
         self.gridLayout_page_3_1.setObjectName("gridLayout_page_3_1")
+
+        #text_recieve_textBrowser
         self.text_recieve_textBrowser = QtWidgets.QTextBrowser(self.page_serial_port_debug)
+
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -551,6 +554,7 @@ class Ui_BBUI(object):
         self.text_recieve_textBrowser.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.text_recieve_textBrowser.setLineWrapMode(QtWidgets.QTextEdit.WidgetWidth)
         self.text_recieve_textBrowser.setObjectName("text_recieve_textBrowser")
+
         self.gridLayout_page_3_1.addWidget(self.text_recieve_textBrowser, 0, 0, 1, 1)
         self.verticalLayout_page_3_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_page_3_2.setContentsMargins(-1, 6, -1, 0)
@@ -722,13 +726,19 @@ class Ui_BBUI(object):
                                         global_variable.BBSerialRecieve.rxByteCount, global_variable.BBSerialSend.txByteCount))
         else:
             self.statusbar.showMessage('Send Fail!!!')
+        if global_variable.BBSerialRecieve.isShowSend() == True:
+            if global_variable.BBSerialRecieve.isShowTheTime() == True:
+                self.text_recieve_textBrowser.append('<b>'+'SEND-' + time.strftime("%H:%M:%S", time.localtime()) + ':</b>' + tarstring)
+            else:
+                self.text_recieve_textBrowser.append('<b>SEND:</b>' + tarstring)
+            #self.text_recieve_textBrowser.insertPlainText('\n')
 
     def serial_port_open_action(self):
         partem = bbapi.serialPortOpen(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve)
         if partem == True:
             self.statusbar.showMessage('%s Open Success!' % global_variable.BBSerial.name)
             global_variable.BBSerialRecieve.recieveThreading(global_variable.BBSerial, True, 0.01)
-            self.serialRecieveTextBrowerUpdataThreading(global_variable.BBSerialRecieve, True, 0.5)
+            self.serialRecieveUpdataThreading(global_variable.BBSerialRecieve, True, 0.5)
 
         elif partem == False:
             self.statusbar.showMessage('%s Open Fail!' % global_variable.BBSerial.name)
@@ -736,36 +746,44 @@ class Ui_BBUI(object):
             self.statusbar.showMessage('%s Recieving Open!' % global_variable.BBSerial.name)
             #global_variable.BBSerialRecieve.recieveThreading(global_variable.BBSerial, True, 0.01)
 
-    def serialRecieveTextBrowerUpdataThreading(self, serialrecieveclass, openorstop, refreshtime):
+    def serialRecieveUpdataThreading(self, serialrecieveclass, openorstop, refreshtime):
         if openorstop == True:
             self._recieveTextBrowserUpdate = True
-            self.rtbThreading = threading.Thread(target=self.serialRecieveTextBrowserUpdate, args=(serialrecieveclass, refreshtime))
+            self.rtbThreading = threading.Thread(target=self.serialRecieveUpdate, args=(serialrecieveclass, refreshtime))
             self.rtbThreading.setDaemon(True)
             self.rtbThreading.start()
         elif openorstop == False:
             self._recieveTextBrowserUpdate = False
             self.rtbThreading.join()
 
-    def serialRecieveTextBrowserUpdate(self, serialrecieveclass, refreshtime):
+    def serialRecieveUpdate(self, serialrecieveclass, refreshtime):
         while self._recieveTextBrowserUpdate == True:
             time.sleep(refreshtime)
-            self.statusbar.showMessage('%s OPENED, %d >>   Rx: %d Bytes Tx: %d Bytes ' %
-                                       (global_variable.BBSerial.name, global_variable.BBSerial.baudrate,
-                                        global_variable.BBSerialRecieve.rxByteCount,
-                                        global_variable.BBSerialSend.txByteCount))
+            if serialrecieveclass.getRecieveSwitch() == True:
+                self.statusbar.showMessage('%s OPENED, %d >>   Rx: %d Bytes Tx: %d Bytes ' %
+                                           (global_variable.BBSerial.name, global_variable.BBSerial.baudrate,
+                                            serialrecieveclass.rxByteCount,
+                                            global_variable.BBSerialSend.txByteCount))
             strtemp = serialrecieveclass.readBuffer()
+
 
             if strtemp != '':
                 if serialrecieveclass.isAutoNewLine() == False:
                     self.text_recieve_textBrowser.insertPlainText(strtemp)
                     #self.text_recieve_textBrowser.insertHtml('<b>RECIEVE:</b>' + strtemp)
                 else:
-                    self.text_recieve_textBrowser.append('<b>RECIEVE:</b>' + strtemp)
+                    if serialrecieveclass.isShowTheTime() == True:
+                        self.text_recieve_textBrowser.append('<b>' + 'RECIEVE-' + time.strftime("%H:%M:%S", time.localtime()) + ':</b>' + strtemp)
+                    else:
+                        self.text_recieve_textBrowser.append('<b>RECIEVE:</b>' + strtemp)
                 serialrecieveclass.writeBuffer('')
 
     def serial_recieve_stop_action(self):
         global_variable.BBSerialRecieve.setRecieveSwitch(False)
         self.statusbar.showMessage('%s Recieving Stop!' % global_variable.BBSerial.name)
+
+        global_variable.BBSerialRecieve.rxByteCount = 0
+        global_variable.BBSerialSend.txByteCount = 0
 
     def serial_port_shut_down_action(self):
         bbapi.serialPortShutDown(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve)
@@ -773,7 +791,9 @@ class Ui_BBUI(object):
             self.statusbar.showMessage('%s CLOSED!!!' % global_variable.BBSerial.name)
 
     def serial_clean_browser_action(self):
-        pass
+        self.text_recieve_textBrowser.clear()
+        global_variable.BBSerialRecieve.rxByteCount = 0
+        global_variable.BBSerialSend.txByteCount = 0
 
     def serial_save_log_action(self):
         pass

@@ -253,7 +253,11 @@ def serialPortShutDown(serialclass, serialsendsetclass, serialrecievesetclass):
     if serialrecievesetclass.getRecieveSwitch() == True:
         serialrecievesetclass.setRecieveSwitch(False)
 
+class controllCommandFromFlight(object):
+    pass
 
+class controllCommandWaitToShot(object):
+    pass
 
 
 
