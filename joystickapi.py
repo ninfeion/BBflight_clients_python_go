@@ -45,19 +45,6 @@ class devController(object):
     def controllThreading(self, openorno):
         pass
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     def getControllerData(self):
         self._axis = []
         self._ball = []

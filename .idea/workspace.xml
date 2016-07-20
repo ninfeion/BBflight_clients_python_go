@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72b5116a-11f4-45d6-8d38-22e712138db1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/joystickapi.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Ui_main.ui" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui_main_G.ui" afterPath="$PROJECT_DIR$/Ui_main_G.ui" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui_main.py" afterPath="$PROJECT_DIR$/Ui_main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbapi.py" afterPath="$PROJECT_DIR$/bbapi.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/global_variable.py" afterPath="$PROJECT_DIR$/global_variable.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/joystickapi.py" afterPath="$PROJECT_DIR$/joystickapi.py" />
     </list>
     <ignored path="BBflight_clients_python.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,26 +20,6 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="uitest2.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/uitest2.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-229">
-                    <caret line="411" column="13" selection-start-line="411" selection-start-column="13" selection-end-line="411" selection-end-column="13" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="BBflight_clients_python" />
@@ -51,8 +29,8 @@
       <file leaf-file-name="Ui_main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ui_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15960">
-              <caret line="665" column="69" selection-start-line="665" selection-start-column="69" selection-end-line="665" selection-end-column="69" />
+            <state relative-caret-position="323">
+              <caret line="1228" column="56" selection-start-line="1228" selection-start-column="56" selection-end-line="1228" selection-end-column="56" />
               <folding>
                 <element signature="e#246#288#0" expanded="true" />
               </folding>
@@ -60,21 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="uitest1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/uitest1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="337" column="65" selection-start-line="337" selection-start-column="65" selection-end-line="338" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="joystickapi.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/joystickapi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1013">
-              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state relative-caret-position="381">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,7 +51,7 @@
       <file leaf-file-name="global_variable.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/global_variable.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
+            <state relative-caret-position="288">
               <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
               <folding>
                 <element signature="e#72#91#0" expanded="true" />
@@ -95,7 +63,7 @@
       <file leaf-file-name="controller2com.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sidan/controller2com.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="845">
+            <state relative-caret-position="2760">
               <caret line="120" column="16" selection-start-line="120" selection-start-column="16" selection-end-line="120" selection-end-column="16" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
@@ -107,7 +75,7 @@
       <file leaf-file-name="bbapi.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bbapi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-288">
+            <state relative-caret-position="192">
               <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
               <folding>
                 <element signature="e#64#77#0" expanded="true" />
@@ -147,9 +115,11 @@
         <option value="$PROJECT_DIR$/bbapi.py" />
         <option value="$PROJECT_DIR$/src/joystickapi.py" />
         <option value="$PROJECT_DIR$/global_variable.py" />
-        <option value="$PROJECT_DIR$/joystickapi.py" />
         <option value="$PROJECT_DIR$/uitest1.py" />
         <option value="$PROJECT_DIR$/uitest2.py" />
+        <option value="$PROJECT_DIR$/joystickapi.py" />
+        <option value="$PROJECT_DIR$/sidan/uitest3.py" />
+        <option value="$PROJECT_DIR$/sidan/uitest4.py" />
         <option value="$PROJECT_DIR$/Ui_main.py" />
       </list>
     </option>
@@ -204,6 +174,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -253,7 +224,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -280,23 +250,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="BBflight_clients_python" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Ui_main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="app (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../FeelUOwn/feeluown" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="BBflight_clients_python" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../FeelUOwn/feeluown/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -348,6 +301,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="BBflight_clients_python" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Ninfeion_Git/pyqt5_demo_5_calculater.pyw" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="uitest4" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sidan" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="BBflight_clients_python" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sidan/uitest4.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -488,18 +458,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.Ui_main" />
-      <item index="1" class="java.lang.String" itemvalue="Python.app (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Python.pyqt5_demo_4.pyw" />
-      <item index="3" class="java.lang.String" itemvalue="Python.bbapi" />
-      <item index="4" class="java.lang.String" itemvalue="Python.pyqt5_demo_5_calculater.pyw" />
+      <item index="1" class="java.lang.String" itemvalue="Python.pyqt5_demo_4.pyw" />
+      <item index="2" class="java.lang.String" itemvalue="Python.bbapi" />
+      <item index="3" class="java.lang.String" itemvalue="Python.pyqt5_demo_5_calculater.pyw" />
+      <item index="4" class="java.lang.String" itemvalue="Python.uitest4" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.Ui_main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pyqt5_demo_5_calculater.pyw" />
-        <item index="2" class="java.lang.String" itemvalue="Python.bbapi" />
-        <item index="3" class="java.lang.String" itemvalue="Python.pyqt5_demo_4.pyw" />
-        <item index="4" class="java.lang.String" itemvalue="Python.app (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python.uitest4" />
+        <item index="2" class="java.lang.String" itemvalue="Python.pyqt5_demo_5_calculater.pyw" />
+        <item index="3" class="java.lang.String" itemvalue="Python.bbapi" />
+        <item index="4" class="java.lang.String" itemvalue="Python.pyqt5_demo_4.pyw" />
       </list>
     </recent_temporary>
   </component>
@@ -530,12 +500,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="-4" width="1543" height="908" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13474241" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996207" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18078382" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -548,6 +517,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996207" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -585,6 +555,16 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/global_variable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding>
+            <element signature="e#72#91#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bbapi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -609,35 +589,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbapi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
           <folding>
-            <element signature="e#64#77#0" expanded="true" />
+            <element signature="e#72#91#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ui_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#246#288#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/global_variable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -665,7 +619,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-          <folding />
+          <folding>
+            <element signature="e#72#91#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -693,7 +649,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#72#91#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -800,7 +758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="59" column="33" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -808,23 +765,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
           <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/serialapp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/serialapp.py" />
     <entry file="file://C:/Extra Software/Python351/Lib/site-packages/serial/serialwin32.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
           <caret line="257" column="0" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -840,13 +788,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="677">
           <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sidan/controller2com.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="845">
+        <state relative-caret-position="2760">
           <caret line="120" column="16" selection-start-line="120" selection-start-column="16" selection-end-line="120" selection-end-column="16" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
@@ -856,7 +803,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/global_variable.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
+        <state relative-caret-position="288">
           <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
           <folding>
             <element signature="e#72#91#0" expanded="true" />
@@ -866,7 +813,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bbapi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-288">
+        <state relative-caret-position="192">
           <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding>
             <element signature="e#64#77#0" expanded="true" />
@@ -874,42 +821,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/uitest1.py" />
+    <entry file="file://$PROJECT_DIR$/joystick_test.py" />
+    <entry file="file://$PROJECT_DIR$/uitest2.py" />
+    <entry file="file://$PROJECT_DIR$/sidan/uitest3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="399" column="20" selection-start-line="399" selection-start-column="13" selection-end-line="399" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/joystickapi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1013">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state relative-caret-position="381">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/uitest1.py">
+    <entry file="file://$PROJECT_DIR$/sidan/uitest4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="337" column="65" selection-start-line="337" selection-start-column="65" selection-end-line="338" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joystick_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/uitest2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-229">
-          <caret line="411" column="13" selection-start-line="411" selection-start-column="13" selection-end-line="411" selection-end-column="13" />
+        <state relative-caret-position="-367">
+          <caret line="423" column="59" selection-start-line="423" selection-start-column="59" selection-end-line="423" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Ui_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15960">
-          <caret line="665" column="69" selection-start-line="665" selection-start-column="69" selection-end-line="665" selection-end-column="69" />
+        <state relative-caret-position="323">
+          <caret line="1228" column="56" selection-start-line="1228" selection-start-column="56" selection-end-line="1228" selection-end-column="56" />
           <folding>
             <element signature="e#246#288#0" expanded="true" />
           </folding>
