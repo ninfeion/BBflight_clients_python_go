@@ -4,11 +4,11 @@ Joystickapi
 author: Ninfeion
 """
 import pygame.joystick
+import threading,time
 
 class devController(object):
     def __init__(self):
-        pygame.joystick.init()
-
+        #pygame.joystick.init()
         self.devNum = None
 
         self.name = None
@@ -18,7 +18,17 @@ class devController(object):
         self.buttonsNum = None
         self.hatsNum = None
 
+        self._axis = []
+        self._ball = []
+        self._hat = []
+        self._button = []
+
+        self._joystickLoop = False
+
     def controllerScan(self):
+        pygame.init()
+        pygame.joystick.init()
+
         self.devNum = pygame.joystick.get_count()
         return self.devNum
 
@@ -39,30 +49,53 @@ class devController(object):
     def _eventRefresh(self):
         pygame.event.get()
 
-    def controllLoopEvent(self):
-        pass
+    def controllLoopEvent(self, refreshtime):
+        while self._joystickLoop == True:
+            time.sleep(refreshtime)
+            self.controllerDataRefresh()
 
-    def controllThreading(self, openorno):
-        pass
+    def controllThreading(self, openorno, refreshtime):
+        if openorno == True:
+            self._joystickLoop = True
+            self._jThreading = threading.Thread(target=self.controllLoopEvent, args=(refreshtime,))
+            self._jThreading.setDaemon(True)
+            self._jThreading.start()
+        elif openorno == False:
+            self._joystickLoop = False
+            self._jThreading.join()
 
-    def getControllerData(self):
-        self._axis = []
-        self._ball = []
-        self._hat = []
-        self._button = []
-
+    def controllerDataRefresh(self):
         self._eventRefresh()
-        for i in range(self.axesNum):
-            self._axis.append(float("%1.3f" % self._instancejoystick.get_axis(i)))
-            #print("Axis %i value: %f \n" % (i, self._axis[-1]))
-        for i in range(self.buttonsNum):
-            self._button.append(self._instancejoystick.get_button(i))
-            #print("Button %i value: %s \n" % (i, self._button[-1]))
-        for i in range(self.ballsNum):
-            self._ball.append(self._instancejoystick.get_ball(i))
-            #print("Ball %i value: %s \n" % (i, str(self._ball[-1])))
-        for i in range(self.hatsNum):
-            self._hat.append(self._instancejoystick.get_hat(i))
-            #print("Hat %i value: %s \n" % (i, str(self._hat[-1])))
 
-        return self._axis,self._button,self._hat,self._ball #return a tuple which including list
+        if self._axis:
+            for i in range(self.axesNum):
+                self._axis[i] = self._instancejoystick.get_axis(i)
+        else:
+            for i in range(self.axesNum):
+                self._axis.append(self._instancejoystick.get_axis(i))
+
+        if self._button:
+            for i in range(self.buttonsNum):
+                self._button[i] = self._instancejoystick.get_button(i)
+        else:
+            for i in range(self.buttonsNum):
+                self._button.append(self._instancejoystick.get_button(i))
+
+        if self._ball:
+            for i in range(self.ballsNum):
+                self._ball[i] = self._instancejoystick.get_ball(i)
+        else:
+            for i in range(self.ballsNum):
+                self._ball.append(self._instancejoystick.get_ball(i))
+
+        if self._hat:
+            for i in range(self.hatsNum):
+                self._hat[i] = self._instancejoystick.get_hat(i)
+        else:
+            for i in range(self.hatsNum):
+                self._hat.append(self._instancejoystick.get_hat(i))
+
+        #return self._axis,self._button,self._hat,self._ball #return a tuple which including list
+
+    def getData(self):
+        return self._axis, self._button, self._hat, self._ball

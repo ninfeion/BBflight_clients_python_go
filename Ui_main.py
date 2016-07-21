@@ -1162,7 +1162,6 @@ class Ui_BBUI(object):
                                             global_variable.BBSerialSend.txByteCount))
             strtemp = serialrecieveclass.readBuffer()
 
-
             if strtemp != '':
                 if serialrecieveclass.isAutoNewLine() == False:
                     self.text_recieve_textBrowser.insertPlainText(strtemp)
@@ -1203,45 +1202,53 @@ class Ui_BBUI(object):
     def controller_choose(self, dev_num_str):
         global_variable.BBController.controllerChoose(int(dev_num_str) -1)
         self.label_controller_name.setText(global_variable.BBController.name)
-        #y = 0
-        #x = 2
-
-        #for i in range(global_variable.BBController.axesNum):
-        #    if (i == 3) or (i == 7):
-        #        locals()['self.line' + str(i)] = QtWidgets.QFrame(self.mapping_view_frame)
-        #        locals()['self.line' + str(i)].setFrameShape(QtWidgets.QFrame.VLine)
-        #        locals()['self.line' + str(i)].setFrameShadow(QtWidgets.QFrame.Sunken)
-        #        locals()['self.line' + str(i)].setObjectName("line")
-        #        self.gridLayout_10.addWidget(locals()['self.line'+str(i)], y, x+i, 1, 1)
-        #    else:
-        #        locals()['self.label' + str(i)] = QtWidgets.QLabel('AxIs %s'%i, self.mapping_view_frame)
-        #        locals()['self.label' + str(i)].setObjrctName('controller_label%s'%i)
-        #        self.gridLayout_10.addWidget(locals()['self.label'+str(i)], y, x+i, 1, 1)
-
-        #self.update()
+        self.controllerUiLoopThreading(True, 0.01)
 
         for i in range(global_variable.BBController.axesNum):
-            self.CONTROLLER_LABEL_GROUP[i].setText('AxIs %s'%i)
+            self.CONTROLLER_LABEL_GROUP[i].setText('<font color=red><b>AxIs %s</b></font>'%i)
+            self.CONTROLLER_LINEEDIT_GROUP[i].setReadOnly(True)
 
         for ii in range(global_variable.BBController.buttonsNum):
-            self.CONTROLLER_LABEL_GROUP[i+ii].setText('Button %s'%ii)
+            self.CONTROLLER_LABEL_GROUP[i + ii + 1].setText('<font color=green><b>Button %s</b></font>'%ii)
+            self.CONTROLLER_LINEEDIT_GROUP[i + ii + 1].setReadOnly(True)
 
         for iii in range(global_variable.BBController.hatsNum):
-            self.CONTROLLER_LABEL_GROUP[i+ii+iii].setText('Hat %s'%iii)
+            self.CONTROLLER_LABEL_GROUP[i+ ii + iii + 2].setText('<font color=blue><b>Hat %s</b></font>'%iii)
+            self.CONTROLLER_LINEEDIT_GROUP[i+ ii +iii + 2].setReadOnly(True)
 
-        for iv in range(global_variable.BBController.ballsNum):
-            self.CONTROLLER_LABEL_GROUP[i+ii+iii+iv].setText('Ball %s'%iv)
-
-
-
-
-    def controllerDetectLoop(self):
-        pass
-
-    def controllerDetectLoopThreading(self):
-        pass
+        #for iv in range(global_variable.BBController.ballsNum):
+        #    self.CONTROLLER_LABEL_GROUP[i+ii+iii+iv].setText('Ball %s'%iv)
+        #    self.CONTROLLER_LINEEDIT_GROUP[i+ii+iii+iv].setReadOnly(True)
 
 
+    def controllerUiLoop(self, refreshtime):
+        while self._joystickLoop == True:
+            time.sleep(refreshtime)
+            global_variable.BBController.controllerDataRefresh()
+
+            controllerdata = global_variable.BBController.getData()
+            for i in range(global_variable.BBController.axesNum):
+                self.CONTROLLER_LINEEDIT_GROUP[i].setText("{:>6.3f}".format(controllerdata[0][i]))
+
+            for ii in range(global_variable.BBController.buttonsNum):
+                self.CONTROLLER_LINEEDIT_GROUP[i + ii + 1].setText("{}".format(controllerdata[1][ii]))
+
+            for iii in range(global_variable.BBController.hatsNum):
+                self.CONTROLLER_LINEEDIT_GROUP[i + ii + iii + 2].setText("{}".format(str(controllerdata[2][iii])))
+
+            #for iv in range(global_variable.BBController.ballsNum):
+            #    self.CONTROLLER_LINEEDIT_GROUP[i + ii + iii + iv].setText('%d'%(controllerdata[3][iv]))
+
+
+    def controllerUiLoopThreading(self, openorno, refreshtime):
+        if openorno == True:
+            self._joystickLoop = True
+            self._jThreading = threading.Thread(target=self.controllerUiLoop, args=(refreshtime,))
+            self._jThreading.setDaemon(True)
+            self._jThreading.start()
+        elif openorno == False:
+            self._joystickLoop = False
+            self._jThreading.join()
 
 
 

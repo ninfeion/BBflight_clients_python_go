@@ -7,7 +7,7 @@ author: Ninfeion
 
 import serial
 import serial.tools.list_ports
-#import pygame.joystick
+import binascii
 import threading,time
 
 class serial_recieve(object):
@@ -28,7 +28,10 @@ class serial_recieve(object):
             if self.getRecieveSwitch() == True:
                 if serialclass.in_waiting != 0:
                     self.rxByteCount += serialclass.in_waiting
-                    self._buffer += serialclass.read(serialclass.in_waiting).decode('ascii')
+                    if self.getRecieveMode() == 'ASCII':
+                        self._buffer += serialclass.read(serialclass.in_waiting).decode('ascii')
+                    else:
+                        self._buffer += binascii.b2a_hex(serialclass.read(serialclass.in_waiting)).decode('ascii')
                     self._bufferReady = True
 
     def bufferReadyEventCheck(self):
