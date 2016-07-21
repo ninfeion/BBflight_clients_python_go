@@ -8,7 +8,9 @@ import threading,time
 
 class devController(object):
     def __init__(self):
-        #pygame.joystick.init()
+        pygame.init()
+        pygame.joystick.init()
+
         self.devNum = None
 
         self.name = None
@@ -26,8 +28,8 @@ class devController(object):
         self._joystickLoop = False
 
     def controllerScan(self):
-        pygame.init()
-        pygame.joystick.init()
+        #pygame.init()
+        #pygame.joystick.init()
 
         self.devNum = pygame.joystick.get_count()
         return self.devNum

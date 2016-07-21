@@ -253,18 +253,13 @@ class Ui_BBUI(object):
         self.verticalLayout_2_2.addLayout(self.horizontalLayout_2_2_1)
         self.horizontalLayout_2_2_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2_2_2.setObjectName("horizontalLayout_2_2_2")
-        self.Thr_progressBar = QtWidgets.QProgressBar(self.filght_status_groupbox)
-        self.Thr_progressBar.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.Thr_progressBar.sizePolicy().hasHeightForWidth())
-        self.Thr_progressBar.setSizePolicy(sizePolicy)
-        self.Thr_progressBar.setProperty("value", 100)
-        self.Thr_progressBar.setTextVisible(False)
-        self.Thr_progressBar.setOrientation(QtCore.Qt.Vertical)
-        self.Thr_progressBar.setObjectName("Thr_progressBar")
-        self.horizontalLayout_2_2_2.addWidget(self.Thr_progressBar)
+
+        self.progressBar = QtWidgets.QProgressBar(self.filght_status_groupbox)
+        self.progressBar.setProperty("value", 24)
+        self.progressBar.setOrientation(QtCore.Qt.Vertical)
+        self.progressBar.setObjectName("progressBar")
+
+        self.horizontalLayout_2_2_2.addWidget(self.progressBar)
         self.M1_progressBar = QtWidgets.QProgressBar(self.filght_status_groupbox)
         self.M1_progressBar.setProperty("value", 50)
         self.M1_progressBar.setTextVisible(False)
@@ -315,10 +310,8 @@ class Ui_BBUI(object):
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.controlle_mapping_setting_groupBox = QtWidgets.QGroupBox(self.page_controller_setting)
         self.controlle_mapping_setting_groupBox.setObjectName("controlle_mapping_setting_groupBox")
-
         self.gridLayout_9 = QtWidgets.QGridLayout(self.controlle_mapping_setting_groupBox)
         self.gridLayout_9.setObjectName("gridLayout_9")
-
         self.mapping_view_frame = QtWidgets.QFrame(self.controlle_mapping_setting_groupBox)
         self.mapping_view_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.mapping_view_frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -328,9 +321,6 @@ class Ui_BBUI(object):
         self.comboBox_2 = QtWidgets.QComboBox(self.mapping_view_frame)
         self.comboBox_2.setObjectName("comboBox_2")
         self.gridLayout_10.addWidget(self.comboBox_2, 0, 8, 1, 1)
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.mapping_view_frame)
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.gridLayout_10.addWidget(self.lineEdit_2, 0, 3, 1, 1)
         self.label_2 = QtWidgets.QLabel(self.mapping_view_frame)
         self.label_2.setObjectName("label_2")
         self.gridLayout_10.addWidget(self.label_2, 0, 6, 1, 1)
@@ -407,53 +397,26 @@ class Ui_BBUI(object):
         self.label_7_name.setSizePolicy(sizePolicy)
         self.label_7_name.setObjectName("label_7_name")
         self.gridLayout_10.addWidget(self.label_7_name, 2, 3, 1, 1)
-
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.mapping_view_frame)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.gridLayout_10.addWidget(self.lineEdit_2, 0, 3, 1, 1)
         self.gridLayout_9.addWidget(self.mapping_view_frame, 4, 0, 1, 3)
-
         self.dev_scan_pushButton = QtWidgets.QPushButton(self.controlle_mapping_setting_groupBox)
         self.dev_scan_pushButton.setObjectName("dev_scan_pushButton")
-
         self.gridLayout_9.addWidget(self.dev_scan_pushButton, 1, 0, 1, 1)
         self.dev_view_comboBox = QtWidgets.QComboBox(self.controlle_mapping_setting_groupBox)
         self.dev_view_comboBox.setObjectName("dev_view_comboBox")
-
         self.gridLayout_9.addWidget(self.dev_view_comboBox, 2, 1, 1, 1)
         self.controller_choose_label = QtWidgets.QLabel(self.controlle_mapping_setting_groupBox)
         self.controller_choose_label.setObjectName("controller_choose_label")
-
         self.gridLayout_9.addWidget(self.controller_choose_label, 2, 0, 1, 1)
-
         self.label_7 = QtWidgets.QLabel(self.controlle_mapping_setting_groupBox)
         self.label_7.setObjectName("label_7")
         self.gridLayout_9.addWidget(self.label_7, 1, 1, 1, 1)
-
-        #label_controller_name
-        #self.label_controller_name = QtWidgets.QLabel(self.controller_mapping_setting_groupBox)
-        #self.label_controller_name.setObjectName("label_controller_name")
-        #self.gridLayout_9.addWidget(self.label_controller_name, 1, 1, 1, 1)
-
-
-        #horizontalSpacer_2 and _3
-        #spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        #self.gridLayout_9.addItem(spacerItem3, 1, 2, 1, 1)
-        #spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        #self.gridLayout_9.addItem(spacerItem4, 2, 2, 1, 1)
-
-
-
-
-
-
-
-
-
-
-
         spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_9.addItem(spacerItem3, 1, 2, 1, 1)
         spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_9.addItem(spacerItem4, 2, 2, 1, 1)
-
         self.gridLayout_4.addWidget(self.controlle_mapping_setting_groupBox, 0, 0, 1, 1)
         self.tabWidget.addTab(self.page_controller_setting, "")
         self.page_serial_port_debug = QtWidgets.QWidget()
@@ -642,7 +605,7 @@ class Ui_BBUI(object):
         self.menubar.addAction(self.menuAbout.menuAction())
 
         self.retranslateUi(BBUI)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(BBUI)
 
     def retranslateUi(self, BBUI):

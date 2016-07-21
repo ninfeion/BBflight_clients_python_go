@@ -7,10 +7,11 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMainWindow
 import global_variable
 import bbapi,threading,time
 
-class Ui_BBUI(object):
+class Ui_BBUI(QMainWindow):
     def __init__(self):
         super().__init__()
         self._recieveTextBrowserUpdate = True
@@ -90,6 +91,7 @@ class Ui_BBUI(object):
         self.led_mode_combobox = QtWidgets.QComboBox(self.expansion_function_groupbox)
         self.led_mode_combobox.setObjectName("led_mode_combobox")
         self.gridLayout_7.addWidget(self.led_mode_combobox, 0, 1, 1, 1)
+
         self.expansion_function_groupbox_checkBox_2 = QtWidgets.QCheckBox(self.expansion_function_groupbox)
         self.expansion_function_groupbox_checkBox_2.setEnabled(False)
         self.expansion_function_groupbox_checkBox_2.setObjectName("expansion_function_groupbox_checkBox_2")
@@ -189,18 +191,29 @@ class Ui_BBUI(object):
         self.thrust_label = QtWidgets.QLabel(self.filght_status_groupbox)
         self.thrust_label.setObjectName("thrust_label")
         self.gridLayout_2_1.addWidget(self.thrust_label, 1, 1, 1, 1)
+
+        #thrust_actual_lineEdit
         self.thrust_actual_lineEdit = QtWidgets.QLineEdit(self.filght_status_groupbox)
         self.thrust_actual_lineEdit.setObjectName("thrust_actual_lineEdit")
         self.gridLayout_2_1.addWidget(self.thrust_actual_lineEdit, 1, 3, 1, 1)
+        self.thrust_actual_lineEdit.setReadOnly(True)
+
         self.resevered_label_1 = QtWidgets.QLabel(self.filght_status_groupbox)
         self.resevered_label_1.setObjectName("resevered_label_1")
         self.gridLayout_2_1.addWidget(self.resevered_label_1, 5, 1, 1, 1)
+
+        #thrust_target_lineEdit
         self.thrust_target_lineEdit = QtWidgets.QLineEdit(self.filght_status_groupbox)
         self.thrust_target_lineEdit.setObjectName("thrust_target_lineEdit")
         self.gridLayout_2_1.addWidget(self.thrust_target_lineEdit, 1, 2, 1, 1)
+        self.thrust_target_lineEdit.setReadOnly(True)
+
+        #pitch_target_lineEdit
         self.pitch_target_lineEdit = QtWidgets.QLineEdit(self.filght_status_groupbox)
         self.pitch_target_lineEdit.setObjectName("pitch_target_lineEdit")
         self.gridLayout_2_1.addWidget(self.pitch_target_lineEdit, 2, 2, 1, 1)
+        self.pitch_target_lineEdit.setReadOnly(True)
+
         self.yaw_label = QtWidgets.QLabel(self.filght_status_groupbox)
         self.yaw_label.setObjectName("yaw_label")
         self.gridLayout_2_1.addWidget(self.yaw_label, 4, 1, 1, 1)
@@ -211,28 +224,46 @@ class Ui_BBUI(object):
         self.roll_label = QtWidgets.QLabel(self.filght_status_groupbox)
         self.roll_label.setObjectName("roll_label")
         self.gridLayout_2_1.addWidget(self.roll_label, 3, 1, 1, 1)
+
+        #yaw_actual_lineEdit
         self.yaw_actual_lineEdit = QtWidgets.QLineEdit(self.filght_status_groupbox)
         self.yaw_actual_lineEdit.setObjectName("yaw_actual_lineEdit")
         self.gridLayout_2_1.addWidget(self.yaw_actual_lineEdit, 4, 3, 1, 1)
+        self.yaw_actual_lineEdit.setReadOnly(True)
+
+        #yaw_target_lineEdit
         self.yaw_target_lineEdit = QtWidgets.QLineEdit(self.filght_status_groupbox)
         self.yaw_target_lineEdit.setObjectName("yaw_target_lineEdit")
         self.gridLayout_2_1.addWidget(self.yaw_target_lineEdit, 4, 2, 1, 1)
+        self.yaw_target_lineEdit.setReadOnly(True)
+
+        #roll_actual_lineEdit
         self.roll_actual_lineEdit = QtWidgets.QLineEdit(self.filght_status_groupbox)
         self.roll_actual_lineEdit.setObjectName("roll_actual_lineEdit")
         self.gridLayout_2_1.addWidget(self.roll_actual_lineEdit, 3, 3, 1, 1)
+        self.roll_actual_lineEdit.setReadOnly(True)
+
         self.resevered_lineEdit_2 = QtWidgets.QLineEdit(self.filght_status_groupbox)
         self.resevered_lineEdit_2.setEnabled(False)
         self.resevered_lineEdit_2.setObjectName("resevered_lineEdit_2")
         self.gridLayout_2_1.addWidget(self.resevered_lineEdit_2, 5, 3, 1, 1)
+
+        #roll_target_lineEdit
         self.roll_target_lineEdit = QtWidgets.QLineEdit(self.filght_status_groupbox)
         self.roll_target_lineEdit.setObjectName("roll_target_lineEdit")
         self.gridLayout_2_1.addWidget(self.roll_target_lineEdit, 3, 2, 1, 1)
+        self.roll_target_lineEdit.setReadOnly(True)
+
         self.pitch_label = QtWidgets.QLabel(self.filght_status_groupbox)
         self.pitch_label.setObjectName("pitch_label")
         self.gridLayout_2_1.addWidget(self.pitch_label, 2, 1, 1, 1)
+
+        #pitch_actual_lineEdit
         self.pitch_actual_lineEdit = QtWidgets.QLineEdit(self.filght_status_groupbox)
         self.pitch_actual_lineEdit.setObjectName("pitch_actual_lineEdit")
         self.gridLayout_2_1.addWidget(self.pitch_actual_lineEdit, 2, 3, 1, 1)
+        self.pitch_actual_lineEdit.setReadOnly(True)
+
         self.target_label = QtWidgets.QLabel(self.filght_status_groupbox)
         self.target_label.setObjectName("target_label")
         self.gridLayout_2_1.addWidget(self.target_label, 0, 2, 1, 1)
@@ -262,18 +293,30 @@ class Ui_BBUI(object):
         self.verticalLayout_2_2.addLayout(self.horizontalLayout_2_2_1)
         self.horizontalLayout_2_2_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2_2_2.setObjectName("horizontalLayout_2_2_2")
+
+        #Thr_progressBar
+        #self.Thr_progressBar = QtWidgets.QProgressBar(self.filght_status_groupbox)
+        #self.Thr_progressBar.setEnabled(True)
+        #sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        #sizePolicy.setHorizontalStretch(0)
+        #sizePolicy.setVerticalStretch(0)
+        #sizePolicy.setHeightForWidth(self.Thr_progressBar.sizePolicy().hasHeightForWidth())
+        #self.Thr_progressBar.setSizePolicy(sizePolicy)
+        #self.Thr_progressBar.setProperty("value", 100)
+        #self.Thr_progressBar.setTextVisible(False)
+        #self.Thr_progressBar.setOrientation(QtCore.Qt.Vertical)
+        #self.Thr_progressBar.setObjectName("Thr_progressBar")
+        #self.horizontalLayout_2_2_2.addWidget(self.Thr_progressBar)
+        #self.Thr_progressBar.setMaximum(2000)
+
         self.Thr_progressBar = QtWidgets.QProgressBar(self.filght_status_groupbox)
-        self.Thr_progressBar.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.Thr_progressBar.sizePolicy().hasHeightForWidth())
-        self.Thr_progressBar.setSizePolicy(sizePolicy)
-        self.Thr_progressBar.setProperty("value", 100)
-        self.Thr_progressBar.setTextVisible(False)
+        self.Thr_progressBar.setProperty("value", 0)
         self.Thr_progressBar.setOrientation(QtCore.Qt.Vertical)
         self.Thr_progressBar.setObjectName("Thr_progressBar")
         self.horizontalLayout_2_2_2.addWidget(self.Thr_progressBar)
+        self.Thr_progressBar.setMinimum(0)
+        self.Thr_progressBar.setMaximum(2000)
+
         self.M1_progressBar = QtWidgets.QProgressBar(self.filght_status_groupbox)
         self.M1_progressBar.setProperty("value", 50)
         self.M1_progressBar.setTextVisible(False)
@@ -1202,11 +1245,16 @@ class Ui_BBUI(object):
     def controller_choose(self, dev_num_str):
         global_variable.BBController.controllerChoose(int(dev_num_str) -1)
         self.label_controller_name.setText(global_variable.BBController.name)
-        self.controllerUiLoopThreading(True, 0.01)
 
         for i in range(global_variable.BBController.axesNum):
             self.CONTROLLER_LABEL_GROUP[i].setText('<font color=red><b>AxIs %s</b></font>'%i)
             self.CONTROLLER_LINEEDIT_GROUP[i].setReadOnly(True)
+            for j in range(len(global_variable.BBConfig.controllList)):
+                self.CONTROLLER_COMBOBOX_GROUP[i].addItem(global_variable.BBConfig.controllList[j])
+
+            self.CONTROLLER_COMBOBOX_GROUP[i].SenderNumber = i #for detect who is sender
+            self.CONTROLLER_COMBOBOX_GROUP[i].activated[str].connect(self.controller_mapping_setting)
+            self.CONTROLLER_COMBOBOX_GROUP[i].setCurrentIndex(global_variable.BBConfig.forControllerNumFindMapping(i))
 
         for ii in range(global_variable.BBController.buttonsNum):
             self.CONTROLLER_LABEL_GROUP[i + ii + 1].setText('<font color=green><b>Button %s</b></font>'%ii)
@@ -1216,10 +1264,26 @@ class Ui_BBUI(object):
             self.CONTROLLER_LABEL_GROUP[i+ ii + iii + 2].setText('<font color=blue><b>Hat %s</b></font>'%iii)
             self.CONTROLLER_LINEEDIT_GROUP[i+ ii +iii + 2].setReadOnly(True)
 
+        self.statusbar.showMessage('Check if there is exist the same mapping!!!')
+
+        self.controllerUiLoopThreading(True, 0.01)
+
         #for iv in range(global_variable.BBController.ballsNum):
         #    self.CONTROLLER_LABEL_GROUP[i+ii+iii+iv].setText('Ball %s'%iv)
         #    self.CONTROLLER_LINEEDIT_GROUP[i+ii+iii+iv].setReadOnly(True)
 
+    def controller_mapping_setting(self, mapping):
+        sender = self.sender()
+        if mapping == 'Thrust':
+            global_variable.BBConfig.setThrustMapping(sender.SenderNumber)
+        elif mapping == 'Yaw' :
+            global_variable.BBConfig.setYawMapping(sender.SenderNumber)
+        elif mapping == 'Pitch':
+            global_variable.BBConfig.setPitchMapping(sender.SenderNumber)
+        elif mapping == 'Roll':
+            global_variable.BBConfig.setRollMapping(sender.SenderNumber)
+        elif mapping == 'Damping' :
+            global_variable.BBConfig.setDampingMapping(sender.SenderNumber)
 
     def controllerUiLoop(self, refreshtime):
         while self._joystickLoop == True:
@@ -1227,6 +1291,9 @@ class Ui_BBUI(object):
             global_variable.BBController.controllerDataRefresh()
 
             controllerdata = global_variable.BBController.getData()
+
+            global_variable.BBConfig.controllerRawDataConvertAttitude(controllerdata)
+
             for i in range(global_variable.BBController.axesNum):
                 self.CONTROLLER_LINEEDIT_GROUP[i].setText("{:>6.3f}".format(controllerdata[0][i]))
 
@@ -1238,6 +1305,15 @@ class Ui_BBUI(object):
 
             #for iv in range(global_variable.BBController.ballsNum):
             #    self.CONTROLLER_LINEEDIT_GROUP[i + ii + iii + iv].setText('%d'%(controllerdata[3][iv]))
+
+            controllerdataafter = global_variable.BBConfig.controllerRawDataConvertAttitude(controllerdata)
+
+            self.thrust_target_lineEdit.setText("%d"%int(controllerdataafter[0]))
+            self.pitch_target_lineEdit.setText("%6.3f°"%controllerdataafter[1])
+            self.roll_target_lineEdit.setText("%6.3f°"%controllerdataafter[2])
+            self.yaw_target_lineEdit.setText("%6.3f°"%controllerdataafter[3])
+
+            self.Thr_progressBar.setValue(1000) #???????????????????
 
 
     def controllerUiLoopThreading(self, openorno, refreshtime):

@@ -81,3 +81,9 @@ flight client
 |   resevered   | 29
 |   0xff        | 30
 |   0xff        | 31
+
+
+Thread :
+1. serial recieve
+2. Ui serial recieve data handle
+3. joystick detect
