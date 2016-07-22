@@ -985,7 +985,6 @@ class Ui_BBUI(QMainWindow):
 
         #text_recieve_textBrowser
         self.text_recieve_textBrowser = QtWidgets.QTextBrowser(self.page_serial_port_debug)
-
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -994,8 +993,8 @@ class Ui_BBUI(QMainWindow):
         self.text_recieve_textBrowser.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.text_recieve_textBrowser.setLineWrapMode(QtWidgets.QTextEdit.WidgetWidth)
         self.text_recieve_textBrowser.setObjectName("text_recieve_textBrowser")
-
         self.gridLayout_page_3_1.addWidget(self.text_recieve_textBrowser, 0, 0, 1, 1)
+
         self.verticalLayout_page_3_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_page_3_2.setContentsMargins(-1, 6, -1, 0)
         self.verticalLayout_page_3_2.setSpacing(6)
@@ -1219,6 +1218,8 @@ class Ui_BBUI(QMainWindow):
                         self.text_recieve_textBrowser.append('<b>RECIEVE:</b>')
                         self.text_recieve_textBrowser.append(strtemp)
                 serialrecieveclass.writeBuffer('')
+
+            self.text_recieve_textBrowser.moveCursor(QtGui.QTextCursor.End)
 
     def serial_recieve_stop_action(self):
         global_variable.BBSerialRecieve.setRecieveSwitch(False)
