@@ -1168,9 +1168,11 @@ class Ui_BBUI(QMainWindow):
             self.statusbar.showMessage('Send Fail!!!')
         if global_variable.BBSerialRecieve.isShowSend() == True:
             if global_variable.BBSerialRecieve.isShowTheTime() == True:
-                self.text_recieve_textBrowser.append('<b>'+'SEND-' + time.strftime("%H:%M:%S", time.localtime()) + ':</b>' + tarstring)
+                self.text_recieve_textBrowser.append('<b>'+'SEND-' + time.strftime("%H:%M:%S", time.localtime()) + ':</b>')
+                self.text_recieve_textBrowser.append(tarstring)
             else:
-                self.text_recieve_textBrowser.append('<b>SEND:</b>' + tarstring)
+                self.text_recieve_textBrowser.append('<b>SEND:</b>')
+                self.text_recieve_textBrowser.append(tarstring)
             #self.text_recieve_textBrowser.insertPlainText('\n')
 
     def serial_port_open_action(self):
@@ -1211,9 +1213,11 @@ class Ui_BBUI(QMainWindow):
                     #self.text_recieve_textBrowser.insertHtml('<b>RECIEVE:</b>' + strtemp)
                 else:
                     if serialrecieveclass.isShowTheTime() == True:
-                        self.text_recieve_textBrowser.append('<b>' + 'RECIEVE-' + time.strftime("%H:%M:%S", time.localtime()) + ':</b>' + strtemp)
+                        self.text_recieve_textBrowser.append('<b>' + 'RECIEVE-' + time.strftime("%H:%M:%S", time.localtime()) + ':</b>')
+                        self.text_recieve_textBrowser.append(strtemp)
                     else:
-                        self.text_recieve_textBrowser.append('<b>RECIEVE:</b>' + strtemp)
+                        self.text_recieve_textBrowser.append('<b>RECIEVE:</b>')
+                        self.text_recieve_textBrowser.append(strtemp)
                 serialrecieveclass.writeBuffer('')
 
     def serial_recieve_stop_action(self):
