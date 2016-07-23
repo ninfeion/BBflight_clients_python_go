@@ -15,6 +15,8 @@ class clientConfig(object):
 
         self.controllList = ['Thrust', 'Pitch', 'Roll', 'Yaw', 'Damping']
 
+        self._slaveAddress= [0x34, 0xc3, 0x10, 0x10, 0x11]
+
         #self.controllList = {'Yaw': 0,'Pitch': 1,'Roll': 2,'Thrust': 3, 'Damping':4}
 
     def controllerRawDataConvertAttitude(self, rawData):
@@ -54,7 +56,15 @@ class clientConfig(object):
             else:
                 continue
 
+    def getSlaveAddress(self):
+        return '0x%02x,0x%02x,0x%02x,0x%02x,0x%02x' % (self._slaveAddress[0],self._slaveAddress[1],
+                                                       self._slaveAddress[2],self._slaveAddress[3],
+                                                       self._slaveAddress[4])
 
-
-
+    def setSlaveAddress(self, address):
+        """accept the parameter like string'0xaa,0xaa,0xaa,0xaa,0xaa'"""
+        import re
+        addressafter = re.findall(r'[0][x][0-9a-fA-F]{2,2}', address)
+        for i in range(len(self._slaveAddress)):
+            self._slaveAddress[i] = eval(addressafter[i])
         

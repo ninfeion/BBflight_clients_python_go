@@ -42,17 +42,25 @@ class Ui_BBUI(QMainWindow):
         self.gridLayout_1_1.setObjectName("gridLayout_1_1")
         spacerItem = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_1_1.addItem(spacerItem, 1, 3, 1, 2)
+
+        #connect_button
         self.connect_button = QtWidgets.QPushButton(self.centralwidget)
         self.connect_button.setObjectName("connect_button")
         self.gridLayout_1_1.addWidget(self.connect_button, 1, 0, 1, 1)
+        self.connect_button.setCheckable(True)
+
         self.battery_progress = QtWidgets.QProgressBar(self.centralwidget)
         self.battery_progress.setProperty("value", 100)
         self.battery_progress.setTextVisible(False)
         self.battery_progress.setObjectName("battery_progress")
         self.gridLayout_1_1.addWidget(self.battery_progress, 1, 6, 1, 1)
+
+        #address_setting_button
         self.address_setting_button = QtWidgets.QPushButton(self.centralwidget)
         self.address_setting_button.setObjectName("address_setting_button")
         self.gridLayout_1_1.addWidget(self.address_setting_button, 1, 1, 1, 1)
+        self.address_setting_button.clicked.connect(self.address_setting_event)
+
         self.link_quality_progress = QtWidgets.QProgressBar(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -66,9 +74,14 @@ class Ui_BBUI(QMainWindow):
         self.link_quality_label = QtWidgets.QLabel(self.centralwidget)
         self.link_quality_label.setObjectName("link_quality_label")
         self.gridLayout_1_1.addWidget(self.link_quality_label, 2, 8, 1, 1)
-        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout_1_1.addWidget(self.lineEdit, 1, 2, 1, 1)
+
+        #address_setting_lineEdit
+        self.address_setting_lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.address_setting_lineEdit.setObjectName("address_setting_lineEdit")
+        self.gridLayout_1_1.addWidget(self.address_setting_lineEdit, 1, 2, 1, 1)
+        self.address_setting_lineEdit.setMaxLength(24)
+        self.address_setting_lineEdit.setText(global_variable.BBConfig.getSlaveAddress())
+
         self.battery_label = QtWidgets.QLabel(self.centralwidget)
         self.battery_label.setObjectName("battery_label")
         self.gridLayout_1_1.addWidget(self.battery_label, 2, 6, 1, 1)
@@ -1138,7 +1151,7 @@ class Ui_BBUI(QMainWindow):
     def serial_send_hex_setting(self, toggledbool):
         if toggledbool == True:
             global_variable.BBSerialSend.setSendMode('Hex')
-        self.text_send_textEdit.setText(r'Type the words with decimal ascii code like: <b>656667 -> ABC</b>')
+        self.text_send_textEdit.setText(r'Type the words with <b>three-digit-decimal</b> ascii code like: <b>065066067 -> ABC</b>')
         self.text_send_textEdit.selectAll()
 
     def serial_auto_line_feed_setting(self, toggledbool):
@@ -1204,34 +1217,40 @@ class Ui_BBUI(QMainWindow):
                                            (global_variable.BBSerial.name, global_variable.BBSerial.baudrate,
                                             serialrecieveclass.rxByteCount,
                                             global_variable.BBSerialSend.txByteCount))
-            strtemp = serialrecieveclass.readBuffer()
+                strtemp = serialrecieveclass.readBuffer()
 
-            if strtemp != '':
-                if serialrecieveclass.isAutoNewLine() == False:
-                    self.text_recieve_textBrowser.insertPlainText(strtemp)
-                    #self.text_recieve_textBrowser.insertHtml('<b>RECIEVE:</b>' + strtemp)
-                else:
-                    if serialrecieveclass.isShowTheTime() == True:
-                        self.text_recieve_textBrowser.append('<b>' + 'RECIEVE-' + time.strftime("%H:%M:%S", time.localtime()) + ':</b>')
-                        self.text_recieve_textBrowser.append(strtemp)
+                if strtemp != '':
+                    if serialrecieveclass.isAutoNewLine() == False:
+                        self.text_recieve_textBrowser.insertPlainText(strtemp)
+                        #self.text_recieve_textBrowser.insertHtml('<b>RECIEVE:</b>' + strtemp)
                     else:
-                        self.text_recieve_textBrowser.append('<b>RECIEVE:</b>')
-                        self.text_recieve_textBrowser.append(strtemp)
-                serialrecieveclass.writeBuffer('')
+                        if serialrecieveclass.isShowTheTime() == True:
+                            self.text_recieve_textBrowser.append('<b>' + 'RECIEVE-' + time.strftime("%H:%M:%S", time.localtime()) + ':</b>')
+                            self.text_recieve_textBrowser.append(strtemp)
+                        else:
+                            self.text_recieve_textBrowser.append('<b>RECIEVE:</b>')
+                            self.text_recieve_textBrowser.append(strtemp)
+                    serialrecieveclass.writeBuffer('')
 
-            self.text_recieve_textBrowser.moveCursor(QtGui.QTextCursor.End)
+                self.text_recieve_textBrowser.moveCursor(QtGui.QTextCursor.End)
 
     def serial_recieve_stop_action(self):
         global_variable.BBSerialRecieve.setRecieveSwitch(False)
         self.statusbar.showMessage('%s Recieving Stop!' % global_variable.BBSerial.name)
 
-        global_variable.BBSerialRecieve.rxByteCount = 0
-        global_variable.BBSerialSend.txByteCount = 0
-
     def serial_port_shut_down_action(self):
         bbapi.serialPortShutDown(global_variable.BBSerial, global_variable.BBSerialSend, global_variable.BBSerialRecieve)
         if global_variable.BBSerial.name != None:
             self.statusbar.showMessage('%s CLOSED!!!' % global_variable.BBSerial.name)
+
+        global_variable.BBSerialRecieve.rxByteCount = 0
+        global_variable.BBSerialSend.txByteCount = 0
+
+    def closeEvent(self, QCloseEvent):
+        self.serialRecieveUpdateThreading(openorstop=False)
+        global_variable.BBSerialRecieve.recieveThreading(openorstop=False)
+        self.controllerUiLoopThreading(openorno=False)
+
 
     def serial_clean_browser_action(self):
         self.text_recieve_textBrowser.clear()
@@ -1298,13 +1317,13 @@ class Ui_BBUI(QMainWindow):
             controllerdata = global_variable.BBController.getData()
 
             global_variable.BBConfig.controllerRawDataConvertAttitude(controllerdata)
-
+            i = 0
             for i in range(global_variable.BBController.axesNum):
                 self.CONTROLLER_LINEEDIT_GROUP[i].setText("{:>6.3f}".format(controllerdata[0][i]))
-
+            ii = 0
             for ii in range(global_variable.BBController.buttonsNum):
                 self.CONTROLLER_LINEEDIT_GROUP[i + ii + 1].setText("{}".format(controllerdata[1][ii]))
-
+            iii = 0
             for iii in range(global_variable.BBController.hatsNum):
                 self.CONTROLLER_LINEEDIT_GROUP[i + ii + iii + 2].setText("{}".format(str(controllerdata[2][iii])))
 
@@ -1331,8 +1350,15 @@ class Ui_BBUI(QMainWindow):
             self._joystickLoop = False
             self._jThreading.join()
 
-
-
+    def address_setting_event(self):
+        address = self.address_setting_lineEdit.text()
+        import re
+        addressafter = re.match(r'([0][x][0-9a-fA-F]{2,2}[,]){4,4}[0][x][0-9a-fA-F]{2,2}', address)
+        if addressafter != None:
+            global_variable.BBConfig.setSlaveAddress(addressafter.group(0))
+            self.statusbar.showMessage('Set slave address successfully')
+        else:
+            self.statusbar.showMessage('Please type the right address format!!!')
 
 
 

@@ -26,12 +26,13 @@ class serial_recieve(object):
         while self._recieveLoop == True:
             time.sleep(refreshtime)
             if self.getRecieveSwitch() == True:
-                if serialclass.in_waiting != 0:
-                    self.rxByteCount += serialclass.in_waiting
+                fifolen = serialclass.in_waiting
+                if fifolen != 0:
+                    self.rxByteCount += fifolen
                     if self.getRecieveMode() == 'ASCII':
-                        self._buffer += serialclass.read(serialclass.in_waiting).decode('ascii')
+                        self._buffer += serialclass.read(fifolen).decode('ascii')
                     else:
-                        self._buffer += binascii.b2a_hex(serialclass.read(serialclass.in_waiting)).decode('ascii')
+                        self._buffer += binascii.b2a_hex(serialclass.read(fifolen)).decode('ascii')
                     self._bufferReady = True
 
     def bufferReadyEventCheck(self):
@@ -166,7 +167,7 @@ class serial_send(object):
                     return True
                 elif self.getSendMode() == 'Hex':
                     import re
-                    stringre = re.match(r'([0-9])+', tarstring)
+                    stringre = re.match(r'([0-9][0-9][0-9])+', tarstring)
                     if stringre != None:
                         waittoencode = self._input_hex2ascii(stringre.group(0))
                         self.txByteCount += serialclass.write(waittoencode.encode('ascii'))
@@ -181,8 +182,8 @@ class serial_send(object):
     def _input_hex2ascii(self,string):
         temstrint = ''
         while len(string) > 1:
-            temstrint += chr(int(string[:2]))
-            string = string[2:]
+            temstrint += chr(int(string[:3]))
+            string = string[3:]
         return temstrint
 
 
@@ -249,12 +250,12 @@ def serialPortOpen(serialclass, serialsendsetclass, serialrecievesetclass):
     return True
 
 def serialPortShutDown(serialclass, serialsendsetclass, serialrecievesetclass):
-    if serialclass.isOpen() == True:
-        serialclass.close()
     if serialsendsetclass.getSendSwitch() == True:
         serialsendsetclass.setSendSwitch(False)
     if serialrecievesetclass.getRecieveSwitch() == True:
         serialrecievesetclass.setRecieveSwitch(False)
+    if serialclass.isOpen() == True:
+        serialclass.close()
 
 class controllCommandFromFlight(object):
     pass
