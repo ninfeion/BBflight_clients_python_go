@@ -13,6 +13,7 @@ import threading,time
 class serial_recieve(object):
     def __init__(self):
         self._buffer = ''
+        #self._bufferForBytes = 0
         self._bufferReady = False
         self._recieveMode = 'ASCII'
         self._autoNewLine = True
@@ -30,7 +31,10 @@ class serial_recieve(object):
                 if fifolen != 0:
                     self.rxByteCount += fifolen
                     if self.getRecieveMode() == 'ASCII':
-                        self._buffer += serialclass.read(fifolen).decode('ascii')
+                        try:
+                            self._buffer += serialclass.read(fifolen).decode('ascii')
+                        except UnicodeDecodeError as e:
+                            print(e)
                     else:
                         self._buffer += binascii.b2a_hex(serialclass.read(fifolen)).decode('ascii')
                     self._bufferReady = True
@@ -49,7 +53,7 @@ class serial_recieve(object):
             self._rThreading.start()
         elif openorstop == False:
             self._recieveLoop = False
-            self._rThreading.join()
+            #self._rThreading.join()
 
     def setRecieveSwitch(self, par):
         if type(par) == bool :
@@ -159,32 +163,36 @@ class serial_send(object):
     def getRepeatSendTime(self):
         return self._repeatSendPar
 
-    def sendData(self, serialclass, tarstring):
+    def sendData(self, serialclass, tarstringorbytes ,sendbytesdirectly = False):
         if serialclass.isOpen() == True:
             if self.getSendSwitch() == True:
-                if self.getSendMode() == 'ASCII':
-                    self.txByteCount += serialclass.write(tarstring.encode('ascii'))
-                    return True
-                elif self.getSendMode() == 'Hex':
-                    import re
-                    stringre = re.match(r'([0-9][0-9][0-9])+', tarstring)
-                    if stringre != None:
-                        waittoencode = self._input_hex2ascii(stringre.group(0))
-                        self.txByteCount += serialclass.write(waittoencode.encode('ascii'))
+                if sendbytesdirectly == False:
+                    if self.getSendMode() == 'ASCII':
+                        self.txByteCount += serialclass.write(tarstringorbytes.encode('ascii'))
                         return True
-                    else:
-                        return False
+                    elif self.getSendMode() == 'Hex':
+                        import re
+                        stringre = re.match(r'([0-9a-fA-F][0-9a-fA-F])+', tarstringorbytes)
+                        if stringre != None:
+                            #waittoencode = self._input_hex2ascii(stringre.group(0))
+                            #self.txByteCount += serialclass.write(waittoencode.encode('ascii'))
+                            self.txByteCount += serialclass.write(binascii.a2b_hex(stringre.group(0)))
+                            return True
+                        else:
+                            return False
+                elif sendbytesdirectly == True:
+                    self.txByteCount += serialclass.write(tarstringorbytes)
             else:
                 return False
         else:
             return False
 
-    def _input_hex2ascii(self,string):
-        temstrint = ''
-        while len(string) > 1:
-            temstrint += chr(int(string[:3]))
-            string = string[3:]
-        return temstrint
+    #def _input_hex2ascii(self,string):
+        #temstrint = ''
+        #while len(string) > 1:
+            #temstrint += chr(int(string[:3]))
+            #string = string[3:]
+        #return temstrint
 
 
 def serialScanPort():

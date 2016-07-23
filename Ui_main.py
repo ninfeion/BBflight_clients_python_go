@@ -48,6 +48,7 @@ class Ui_BBUI(QMainWindow):
         self.connect_button.setObjectName("connect_button")
         self.gridLayout_1_1.addWidget(self.connect_button, 1, 0, 1, 1)
         self.connect_button.setCheckable(True)
+        self.connect_button.clicked.connect(self.connectSlaveAction)
 
         self.battery_progress = QtWidgets.QProgressBar(self.centralwidget)
         self.battery_progress.setProperty("value", 100)
@@ -121,18 +122,24 @@ class Ui_BBUI(QMainWindow):
         self.flight_mode_label = QtWidgets.QLabel(self.basic_control_groupbox)
         self.flight_mode_label.setObjectName("flight_mode_label")
         self.gridLayout_5.addWidget(self.flight_mode_label, 1, 0, 1, 1)
+
+        #flight_mode_combobox
         self.flight_mode_combobox = QtWidgets.QComboBox(self.basic_control_groupbox)
         self.flight_mode_combobox.setObjectName("flight_mode_combobox")
         self.gridLayout_5.addWidget(self.flight_mode_combobox, 1, 1, 1, 1)
+
         self.basic_control_groupbox_checkBox_1 = QtWidgets.QCheckBox(self.basic_control_groupbox)
         self.basic_control_groupbox_checkBox_1.setObjectName("basic_control_groupbox_checkBox_1")
         self.gridLayout_5.addWidget(self.basic_control_groupbox_checkBox_1, 7, 0, 1, 1)
         self.pitch_trim_doubleSpinBox = QtWidgets.QDoubleSpinBox(self.basic_control_groupbox)
         self.pitch_trim_doubleSpinBox.setObjectName("pitch_trim_doubleSpinBox")
         self.gridLayout_5.addWidget(self.pitch_trim_doubleSpinBox, 6, 1, 1, 1)
-        self.thrus_mode_doubleSpinBox = QtWidgets.QDoubleSpinBox(self.basic_control_groupbox)
-        self.thrus_mode_doubleSpinBox.setObjectName("thrus_mode_doubleSpinBox")
-        self.gridLayout_5.addWidget(self.thrus_mode_doubleSpinBox, 3, 1, 1, 1)
+
+        #thrust_mode_combobox
+        self.thrust_mode_combobox = QtWidgets.QComboBox(self.basic_control_groupbox)
+        self.thrust_mode_combobox.setObjectName("thrust_mode_combobox")
+        self.gridLayout_5.addWidget(self.thrust_mode_combobox, 3, 1, 1, 1)
+
         self.basic_control_groupbox_radioButton_3 = QtWidgets.QRadioButton(self.basic_control_groupbox)
         self.basic_control_groupbox_radioButton_3.setObjectName("basic_control_groupbox_radioButton_3")
         self.gridLayout_5.addWidget(self.basic_control_groupbox_radioButton_3, 8, 1, 1, 1)
@@ -1151,7 +1158,7 @@ class Ui_BBUI(QMainWindow):
     def serial_send_hex_setting(self, toggledbool):
         if toggledbool == True:
             global_variable.BBSerialSend.setSendMode('Hex')
-        self.text_send_textEdit.setText(r'Type the words with <b>three-digit-decimal</b> ascii code like: <b>065066067 -> ABC</b>')
+        self.text_send_textEdit.setText(r'Type the words with <b>two-digit-hexadecimal</b> code like: <b>414243 -> ABC</b>')
         self.text_send_textEdit.selectAll()
 
     def serial_auto_line_feed_setting(self, toggledbool):
@@ -1199,6 +1206,8 @@ class Ui_BBUI(QMainWindow):
         elif partem == 'DataRecieveContinue':
             self.statusbar.showMessage('%s Recieving Open!' % global_variable.BBSerial.name)
 
+        global_variable.BBConfig.setSerialConnectStatus(True)
+
     def serialRecieveUpdateThreading(self, serialrecieveclass, openorstop, refreshtime):
         if openorstop == True:
             self._recieveTextBrowserUpdate = True
@@ -1207,19 +1216,18 @@ class Ui_BBUI(QMainWindow):
             self.rtbThreading.start()
         elif openorstop == False:
             self._recieveTextBrowserUpdate = False
-            self.rtbThreading.join()
+            #self.rtbThreading.join()
 
     def serialRecieveUpdate(self, serialrecieveclass, refreshtime):
         while self._recieveTextBrowserUpdate == True:
             time.sleep(refreshtime)
             if serialrecieveclass.getRecieveSwitch() == True:
-                self.statusbar.showMessage('%s OPENED, %d >>   Rx: %d Bytes Tx: %d Bytes ' %
-                                           (global_variable.BBSerial.name, global_variable.BBSerial.baudrate,
-                                            serialrecieveclass.rxByteCount,
-                                            global_variable.BBSerialSend.txByteCount))
                 strtemp = serialrecieveclass.readBuffer()
-
                 if strtemp != '':
+                    self.statusbar.showMessage('%s OPENED, %d >>   Rx: %d Bytes Tx: %d Bytes ' %
+                                               (global_variable.BBSerial.name, global_variable.BBSerial.baudrate,
+                                                serialrecieveclass.rxByteCount,
+                                                global_variable.BBSerialSend.txByteCount))
                     if serialrecieveclass.isAutoNewLine() == False:
                         self.text_recieve_textBrowser.insertPlainText(strtemp)
                         #self.text_recieve_textBrowser.insertHtml('<b>RECIEVE:</b>' + strtemp)
@@ -1230,9 +1238,12 @@ class Ui_BBUI(QMainWindow):
                         else:
                             self.text_recieve_textBrowser.append('<b>RECIEVE:</b>')
                             self.text_recieve_textBrowser.append(strtemp)
+
+                    global_variable.BBConfig.respondAnalysis(strtemp)
+
                     serialrecieveclass.writeBuffer('')
 
-                self.text_recieve_textBrowser.moveCursor(QtGui.QTextCursor.End)
+                #self.text_recieve_textBrowser.moveCursor(QtGui.QTextCursor.End)
 
     def serial_recieve_stop_action(self):
         global_variable.BBSerialRecieve.setRecieveSwitch(False)
@@ -1245,6 +1256,8 @@ class Ui_BBUI(QMainWindow):
 
         global_variable.BBSerialRecieve.rxByteCount = 0
         global_variable.BBSerialSend.txByteCount = 0
+
+        global_variable.BBConfig.setSerialConnectStatus(False)
 
     def closeEvent(self, QCloseEvent):
         self.serialRecieveUpdateThreading(openorstop=False)
@@ -1292,6 +1305,8 @@ class Ui_BBUI(QMainWindow):
 
         self.controllerUiLoopThreading(True, 0.01)
 
+        global_variable.BBConfig.setControllerConnectStatus(True)
+
         #for iv in range(global_variable.BBController.ballsNum):
         #    self.CONTROLLER_LABEL_GROUP[i+ii+iii+iv].setText('Ball %s'%iv)
         #    self.CONTROLLER_LINEEDIT_GROUP[i+ii+iii+iv].setReadOnly(True)
@@ -1316,7 +1331,6 @@ class Ui_BBUI(QMainWindow):
 
             controllerdata = global_variable.BBController.getData()
 
-            global_variable.BBConfig.controllerRawDataConvertAttitude(controllerdata)
             i = 0
             for i in range(global_variable.BBController.axesNum):
                 self.CONTROLLER_LINEEDIT_GROUP[i].setText("{:>6.3f}".format(controllerdata[0][i]))
@@ -1330,12 +1344,12 @@ class Ui_BBUI(QMainWindow):
             #for iv in range(global_variable.BBController.ballsNum):
             #    self.CONTROLLER_LINEEDIT_GROUP[i + ii + iii + iv].setText('%d'%(controllerdata[3][iv]))
 
-            controllerdataafter = global_variable.BBConfig.controllerRawDataConvertAttitude(controllerdata)
+            self.controllerdataafter = global_variable.BBConfig.controllerRawDataConvertAttitude(controllerdata)
 
-            self.thrust_target_lineEdit.setText("%d"%int(controllerdataafter[0]))
-            self.pitch_target_lineEdit.setText("%6.3f°"%controllerdataafter[1])
-            self.roll_target_lineEdit.setText("%6.3f°"%controllerdataafter[2])
-            self.yaw_target_lineEdit.setText("%6.3f°"%controllerdataafter[3])
+            self.thrust_target_lineEdit.setText("%d"%int(self.controllerdataafter[0]))
+            self.pitch_target_lineEdit.setText("%6.3f°"%self.controllerdataafter[1])
+            self.roll_target_lineEdit.setText("%6.3f°"%self.controllerdataafter[2])
+            self.yaw_target_lineEdit.setText("%6.3f°"%self.controllerdataafter[3])
 
             self.Thr_progressBar.setValue(1000) #???????????????????
 
@@ -1348,7 +1362,7 @@ class Ui_BBUI(QMainWindow):
             self._jThreading.start()
         elif openorno == False:
             self._joystickLoop = False
-            self._jThreading.join()
+            #self._jThreading.join()
 
     def address_setting_event(self):
         address = self.address_setting_lineEdit.text()
@@ -1360,7 +1374,84 @@ class Ui_BBUI(QMainWindow):
         else:
             self.statusbar.showMessage('Please type the right address format!!!')
 
+    def connectRadioBuildUiLoopThreading(self, openorno, frequence):
+        if openorno == True:
+            self._radioLoopSwitch = True
+            self._radioThreading = threading.Thread(target=self.connectRadioUiLoop, args=(frequence,))
+            self._radioThreading.setDaemon(True)
+            self._radioThreading.start()
+        elif openorno == False:
+            self._radioLoopSwitch = False
+            #self._radioThreading.join()
+            print('thread end')
 
+    def connectRadioUiLoop(self, frequence):
+        self._connectRadioUiLoopAlive = True
+        while self._radioLoopSwitch == True:
+            time.sleep(frequence)
+            print('thread run')
+
+            #global_variable.BBSerialSend.sendData(global_variable.BBSerial,
+            #                                      global_variable.BBConfig.createControllData(self.controllerdataafter),
+            #                                      sendbytesdirectly= True)
+
+            self.thrust_actual_lineEdit.setText("%d"%global_variable.BBConfig.slaveThrust)
+            self.pitch_actual_lineEdit.setText("%6.1f°"%global_variable.BBConfig.slavePitch)
+            self.roll_actual_lineEdit.setText("%6.1f°"%global_variable.BBConfig.slaveRoll)
+            self.yaw_actual_lineEdit.setText("%6.1f°"%global_variable.BBConfig.slaveYaw)
+
+
+
+
+
+
+
+
+
+
+    def waitSlaveConnectRespondThreadLoop(self, frequence):
+        while global_variable.BBConfig.isConnectSlave() == False and self._waitconnectThreadingSwtich == True:
+            time.sleep(frequence)
+            print('Wait For Slave Connect')
+
+        #self._waitconnectThreading.join()
+        #print('enable')
+        if self._waitconnectThreadingSwtich == True:
+            self.connectRadioBuildUiLoopThreading(True, 0.5)
+            print('Slave Is Connect')
+
+    def connectSlaveAction(self):
+        if self.connect_button.isChecked() == True:
+            if global_variable.BBConfig.checkIfReadyForSlaveConnect()== True:
+                self.radioButton_send_hex.setChecked(True)
+                self.radioButton_recieve_hex.setChecked(True)
+                self.radioButton_recieve_ascii.setEnabled(False)
+                self.radioButton_send_ascii.setEnabled(False)
+                global_variable.BBSerialSend.sendData(global_variable.BBSerial,
+                                                      global_variable.BBConfig.builtConnectWithSlave(),
+                                                      True)
+                self._waitconnectThreadingSwtich = True
+                self._waitconnectThreading = threading.Thread(target=self.waitSlaveConnectRespondThreadLoop, args=(0.5,))
+                self._waitconnectThreading.setDaemon(True)
+                self._waitconnectThreading.start()
+
+                self._connectRadioUiLoopAlive = False
+                self.statusbar.showMessage('Wait For Slave Respond!')
+            else:
+                self.statusbar.showMessage('Not Ready for Slave Connecting!Check Serial And Controller\'s Connect Status!')
+                self.connect_button.setChecked(False)
+        else:
+            if self._waitconnectThreadingSwtich == True:
+                self._waitconnectThreadingSwtich = False
+                self.statusbar.showMessage('Stop Wait For Slave Respond!!!')
+
+            if self._connectRadioUiLoopAlive == True:
+                self.connectRadioBuildUiLoopThreading(False, 0.5)
+                global_variable.BBConfig.slaveUnconnect()
+                self.statusbar.showMessage('Disconnect From Slave!!!')
+
+            self.radioButton_recieve_ascii.setEnabled(True)
+            self.radioButton_send_ascii.setEnabled(True)
 
 
 
